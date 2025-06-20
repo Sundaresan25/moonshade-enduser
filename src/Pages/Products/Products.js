@@ -64,7 +64,7 @@ const Products = () => {
       <CommonPage
         title="MOONSHADE"
         subTitle="A creator of fragrances."
-        backgroundImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrW6nSc6Q68w1iY7VR0M8a9TJOl62os14mbA&s"
+        backgroundImage="https://img.freepik.com/premium-photo/colorful-bottle-perfume-with-rainbow-colored-smoke-coming-out-it_732812-1754.jpg?ga=GA1.1.379859239.1749710562&semt=ais_hybrid&w=740"
         highlightWord="SHADE"
       />
 
