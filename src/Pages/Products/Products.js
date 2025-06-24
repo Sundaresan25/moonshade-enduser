@@ -3,7 +3,8 @@ import Options from '../../Components/Options';
 import Button from '../../Components/Button';
 import CommonPage from '../../Components/CommonPage';
 
-const rawProducts = [ { name: "Signature Perfume", description: "Day & night exclusive scents.", price: "$50", image: "https://th.bing.com/th/id/OIP.vQ-FnprzqcOEhJduAhYlvwHaE8?w=294&h=196&c=7&r=0&o=7&pid=1.7&rm=3" },
+const rawProducts = [  
+  { name: "Signature Perfume", description: "Day & night exclusive scents.", price: "$50", image: "https://th.bing.com/th/id/OIP.vQ-FnprzqcOEhJduAhYlvwHaE8?w=294&h=196&c=7&r=0&o=7&pid=1.7&rm=3" },
   { name: "Custom Blend", description: "A fragrance tailored to you.", price: "$75", image: "https://th.bing.com/th/id/OIF.r9AwOVljjspLlRYFWVas9A?w=270&h=180&c=7&r=0&o=7&pid=1.7&rm=3" },
   { name: "Seasonal Collection", description: "Inspired by seasonal magic.", price: "$60", image: "https://th.bing.com/th/id/OIP.aumddiaYioAcktjUXavjlwHaE7?w=294&h=196&c=7&r=0&o=7&pid=1.7&rm=3" },
   { name: "Gift Sets", description: "Ideal for special occasions.", price: "$80", image: "https://th.bing.com/th/id/OIF.CHEuskN2qo1c4luwqVMsOg?w=230&h=180&c=7&r=0&o=7&pid=1.7&rm=3" },
@@ -28,7 +29,7 @@ const rawProducts = [ { name: "Signature Perfume", description: "Day & night exc
   { name: "Floral Bouquet", description: "A mix of fresh flower scents.", price: "$62", image: "https://th.bing.com/th/id/OIP.7CYxmzc7SXc9OW1RfpgAAQHaE7?w=260&h=180&c=7&r=0&o=7&pid=1.7&rm=3" },
   { name: "Floral Bouquet", description: "A mix of fresh flower scents.", price: "$62", image: "https://img.freepik.com/premium-photo/packaging-luxury-aroma-perfume-decorations-product-concept-with-flower-background_41969-23875.jpg" },
 ];
- 
+
 
 const parsePrice = (price) => parseFloat(price.replace('$', ''));
 
@@ -36,9 +37,7 @@ const Products = () => {
   const [filters, setFilters] = useState({ search: '', sort: '', filter: '' });
 
   const filteredProducts = rawProducts
-    .filter((p) =>
-      p.name.toLowerCase().includes(filters.search.toLowerCase())
-    )
+    .filter((p) => p.name.toLowerCase().includes(filters.search.toLowerCase()))
     .filter((p) => {
       const price = parsePrice(p.price);
       if (filters.filter === '0-60') return price <= 60;
@@ -68,23 +67,29 @@ const Products = () => {
         highlightWord="SHADE"
       />
 
-      <Options onChange={setFilters} />
+      {/* Responsive Filter Options */}
+      <div className="px-4 py-4 max-w-7xl mx-auto">
+        <Options onChange={setFilters} />
+      </div>
 
-      <div className="grid gap-6 px-4 py-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {/* Product Grid */}
+      <div className="max-w-7xl mx-auto grid gap-4 px-2 py-6 sm:px-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {filteredProducts.map((product, index) => (
           <div
-            className="bg-white rounded-xl shadow-md p-4 flex flex-col hover:shadow-lg hover:-translate-y-1 transition"
+            className="bg-white rounded-xl shadow-md p-4 flex flex-col hover:shadow-lg hover:-translate-y-1 transition duration-200 ease-in-out"
             key={index}
           >
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-64 object-cover rounded-md mb-3"
+              className="w-full h-48 sm:h-56 md:h-64 object-cover rounded-md mb-3"
             />
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">{product.name}</h3>
+            <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-1">{product.name}</h3>
             <p className="text-sm text-gray-600 mb-2">{product.description}</p>
-            <span className="text-blue-600 font-bold mt-auto">{product.price}</span>
-            <Button onClick={() => handleAddToCart(product)}>Add to Cart</Button>
+            <span className="text-sm sm:text-base text-blue-600 font-bold mt-auto">{product.price}</span>
+            <Button className="mt-3 w-full text-sm sm:text-base" onClick={() => handleAddToCart(product)}>
+              Add to Cart
+            </Button>
           </div>
         ))}
       </div>
