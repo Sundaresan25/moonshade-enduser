@@ -1,125 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Lottie from "lottie-react";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Signature Perfume", quantity: 1, price: 49.99 },
-    { id: 2, name: "Custom Blend", quantity: 1, price: 59.99 },
-    { id: 3, name: "Seasonal collections", quantity: 1, price: 69.99 },
-    { id: 4, name: "Gift Sets", quantity: 1, price: 79.99 },
-  ]);
+  const [animationData, setAnimationData] = useState(null);
+  const [notified, setNotified] = useState(false);
 
-  const [coupon, setCoupon] = useState("");
-  const [discount, setDiscount] = useState(0);
-  const [step, setStep] = useState("cart");
-  const [paymentMethod, setPaymentMethod] = useState("");
+  useEffect(() => {
+    fetch("https://assets6.lottiefiles.com/packages/lf20_jcikwtux.json")
+      .then((res) => res.json())
+      .then((data) => setAnimationData(data))
+      .catch((err) => console.error("Failed to load animation", err));
+  }, []);
 
-  const handleApplyCoupon = () => {
-    if (coupon === "DISCOUNT10") {
-      setDiscount(10);
-    }
-  };
-
-  const totalPrice =
-    cartItems.reduce((total, item) => total + item.price * item.quantity, 0) - discount;
-
-  const handleProceedToPayment = () => setStep("payment");
-
-  const handleCompletePurchase = () => {
-    if (!paymentMethod) {
-      alert("Please select a payment method.");
-      return;
-    }
-    alert(`Payment successful with ${paymentMethod}`);
-    setStep("confirmation");
+  const handleNotifyClick = () => {
+    setNotified(true);
+    setTimeout(() => setNotified(false), 3000);
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 border border-gray-300 rounded-lg text-center bg-white shadow-md">
-      {step === "cart" && (
-        <>
-          <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
-          {cartItems.map((item) => (
-            <div key={item.id} className="flex justify-between items-center py-2 border-b border-gray-200">
-              <p className="font-medium">{item.name}</p>
-              <p>Qty: {item.quantity}</p>
-              <p>${item.price.toFixed(2)}</p>
-            </div>
-          ))}
-          <div className="mt-6">
-            <input
-              type="text"
-              placeholder="Enter coupon code"
-              className="border border-gray-300 px-3 py-2 rounded mr-2"
-              value={coupon}
-              onChange={(e) => setCoupon(e.target.value)}
-            />
-            <button
-              onClick={handleApplyCoupon}
-              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-            >
-              Apply Coupon
-            </button>
-            <h3 className="text-xl font-semibold mt-4">Total Price: ${totalPrice.toFixed(2)}</h3>
-            <button
-              onClick={handleProceedToPayment}
-              className="mt-4 bg-green-600 text-white px-6 py-2 rounded text-lg hover:bg-green-700"
-            >
-              Proceed to Payment
-            </button>
-          </div>
-        </>
-      )}
+    <div className="min-h-screen bg-gradient-to-br from-gray-100 via-[#f8f8f8] to-white flex items-center justify-center px-4 py-16">
+      <div className="bg-white/90 backdrop-blur-md border border-gray-200 rounded-3xl shadow-xl max-w-6xl w-full flex flex-col-reverse md:flex-row items-center gap-12 p-6 md:p-12 transition-all duration-300">
 
-      {step === "payment" && (
-        <div className="max-w-md mx-auto mt-6 p-4 border border-gray-200 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4">Payment Options</h2>
-          <div className="text-left">
-            <label className="block my-2">
-              <input
-                type="radio"
-                name="payment"
-                value="Credit Card"
-                onChange={(e) => setPaymentMethod(e.target.value)}
-                className="mr-2"
-              />
-              Credit Card
-            </label>
-            <label className="block my-2">
-              <input
-                type="radio"
-                name="payment"
-                value="PayPal"
-                onChange={(e) => setPaymentMethod(e.target.value)}
-                className="mr-2"
-              />
-              PayPal
-            </label>
-            <label className="block my-2">
-              <input
-                type="radio"
-                name="payment"
-                value="Google Pay"
-                onChange={(e) => setPaymentMethod(e.target.value)}
-                className="mr-2"
-              />
-              Google Pay
-            </label>
-          </div>
+        {/* Left: Content */}
+        <div className="md:w-1/2 text-center md:text-left">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
+            Your Cart is Empty 🛍️
+          </h1>
+          <p className="text-lg text-gray-600 mb-3">
+            Stay tuned — we're launching soon!
+          </p>
+          <p className="text-sm text-gray-500 mb-6">
+            MOONSHADE perfumes are in the labs. Be the first person to know when our premium scents go on live.
+          </p>
+
           <button
-            onClick={handleCompletePurchase}
-            className="mt-4 bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+            onClick={handleNotifyClick}
+            className="bg-black/80 hover:bg-black text-white px-6 py-3 rounded-full backdrop-blur-sm transition-all shadow-md hover:scale-105"
           >
-            Complete Payment
+            Notify Me When Live
           </button>
-        </div>
-      )}
 
-      {step === "confirmation" && (
-        <div className="mt-6">
-          <h2 className="text-2xl font-bold text-green-700">Order Confirmation</h2>
-          <p className="mt-4 text-gray-700">Thank you for your purchase! Your order will be processed soon.</p>
+          {notified && (
+            <div className="mt-5 text-green-600 font-medium animate-pulse">
+              ✅ You’ll be notified when we launch!
+            </div>
+          )}
         </div>
-      )}
+
+        {/* Right: Animation */}
+        <div className="md:w-1/2 flex justify-center items-center">
+          <div className="p-2 rounded-full border-4 border-gray-300 shadow-inner">
+            {animationData ? (
+              <Lottie animationData={animationData} className="w-72 h-72 md:w-80 md:h-80" />
+            ) : (
+              <p className="text-gray-400">Loading animation...</p>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

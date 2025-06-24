@@ -17,10 +17,10 @@ const CommonSection = ({ title = "", subTitle = "", backgroundImage = "", highli
 
   return (
     <div
-      className="w-full h-[600px] md:h-[600px] sm:h-[500px] bg-cover bg-center flex items-start justify-start px-10 sm:px-10 md:pl-52 pt-[140px]"
+      className="w-full h-[100vh] md:h-[115vh] sm:h-[100vh] bg-cover bg-center flex items-start justify-start px-10 sm:px-10 md:pl-52 pt-[140px]"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="text-white max-w-3xl">
+      <div className="text-white max-w-2xl">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">
           {highlightTitle()}
         </h1>

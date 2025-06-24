@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar";
+import Footer from "./Components/Footer"; // ✅ import Footer here
 
 import Home from "./Pages/Home/Home";
 import Products from "./Pages/Products/Products";
@@ -16,10 +17,8 @@ import Imprint from "./Pages/Disclaimer/Imprint";
 import SearchResults from "./Components/SearchResults";
 
 const App = () => (
-  /* The extra classes guarantee the root never grows wider than the screen */
-  <div className="APP w-full overflow-x-hidden">
-    <Navbar />
-
+   <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
+    <Navbar /> 
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/products" element={<Products />} />
@@ -28,16 +27,13 @@ const App = () => (
       <Route path="/register" element={<Register />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/search" element={<SearchResults />} />
-
-      {/* Legal pages */}
       <Route path="/disclaimer" element={<Disclaimer />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/cookies" element={<Cookies />} />
       <Route path="/imprint-legal-information" element={<Imprint />} />
-
-      {/* Fallback */}
       <Route path="*" element={<Home />} />
     </Routes>
+    <Footer /> 
   </div>
 );
 
