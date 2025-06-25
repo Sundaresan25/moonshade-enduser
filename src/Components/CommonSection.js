@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 
 const CommonSection = ({ title = "", subTitle = "", backgroundImage = "", highlightWord }) => {
   const highlightTitle = () => {
@@ -24,7 +24,7 @@ const CommonSection = ({ title = "", subTitle = "", backgroundImage = "", highli
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">
           {highlightTitle()}
         </h1>
-        <p className="text-lg sm:text-xl md:text-2xl font-light text-pink-600 leading-snug">
+        <p className="text-lg sm:text-xl md:text-2xl font-light text-white-600 leading-snug">
           {subTitle}
         </p>
       </div>
