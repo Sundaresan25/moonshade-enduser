@@ -5,6 +5,8 @@ import Home from './Pages/Home/Home';
 import Products from "./Pages/Products/Products";
 import Contact from "./Pages/Contact/Contact";
 import Login from "./Pages/Login/Login";
+import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
+import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import Register from "./Pages/Register/Register";
 import Cart from "./Pages/Cart/Cart";
 
@@ -18,6 +20,8 @@ const App = () => {
         <Route path="/products" element={<Products />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword/>} />
+         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
