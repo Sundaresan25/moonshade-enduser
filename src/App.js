@@ -5,17 +5,16 @@ import Home from "./Pages/Home/Home";
 import Products from "./Pages/Products/Products";
 import Contact from "./Pages/Contact/Contact";
 import Login from "./Pages/Login/Login";
-import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
-import ResetPassword from "./Pages/ResetPassword/ResetPassword";
+
 import Register from "./Pages/Register/Register";
 import Cart from "./Pages/Cart/Cart";
-
 import Disclaimer from "./Pages/Disclaimer/Disclaimer";
 import PrivacyPolicy from "./Pages/Disclaimer/PrivacyPolicy";
 import Cookies from "./Pages/Disclaimer/Cookies";
 import Imprint from "./Pages/Disclaimer/Imprint";
-
 import SearchResults from "./Components/SearchResults";
+import ForgotPassword from "./Pages/Forgotpassword/Forgotpassword";
+import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 
 const App = () => (
   /* The extra classes guarantee the root never grows wider than the screen */
@@ -27,6 +26,8 @@ const App = () => (
       <Route path="/products" element={<Products />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword/>}/>
+      <Route path="/reset-passeord" element={<ResetPassword/>}/>
       <Route path="/register" element={<Register />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/search" element={<SearchResults />} />
