@@ -13,7 +13,7 @@ import PrivacyPolicy from "./Pages/Disclaimer/PrivacyPolicy";
 import Cookies from "./Pages/Disclaimer/Cookies";
 import Imprint from "./Pages/Disclaimer/Imprint";
 import SearchResults from "./Components/SearchResults";
-import ForgotPassword from "./Pages/Forgotpassword/Forgotpassword";
+import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 
 const App = () => (
