@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaHome, FaShoppingCart, FaSearch, FaBars, FaTimes } from "react-icons/fa";
 
-/* ------- Pages in your router ------- */
 const pages = [
   { name: "Home",     path: "/" },
   { name: "Products", path: "/products" },
@@ -16,7 +15,6 @@ const pages = [
   { name: "Imprint / Legal Information", path: "/imprint-legal-information" },
 ];
 
-/* ------- Products you want searchable ------- */
 const products = [
   { name: "Classic Musk", path: "/products/classic-musk" },
   { name: "Amber Nights", path: "/products/amber-nights" },
@@ -24,7 +22,6 @@ const products = [
   { name: "Royal Oud",     path: "/products/royal-oud" },
 ];
 
-/* Combined search list */
 const searchIndex = [...pages, ...products];
 
 const Navbar = () => {
@@ -34,19 +31,16 @@ const Navbar = () => {
   const navigate                        = useNavigate();
   const inputRef                        = useRef(null);
 
-  /* Close overlay on ESC */
   useEffect(() => {
     const h = (e) => e.key === "Escape" && setOverlayOpen(false);
     document.addEventListener("keydown", h);
     return () => document.removeEventListener("keydown", h);
   }, []);
 
-  /* Autofocus when overlay opens */
   useEffect(() => {
     if (overlayOpen) inputRef.current?.focus();
   }, [overlayOpen]);
 
-  /* Filter suggestions */
   const suggestions =
     query.trim()
       ? searchIndex.filter((item) =>
@@ -54,7 +48,6 @@ const Navbar = () => {
         )
       : [];
 
-  /* Open /search?query=... */
   const goFullSearch = (q) => {
     setOverlayOpen(false);
     setQuery("");
@@ -62,14 +55,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-black sticky top-0 z-50">
+    <nav className="fixed top-0 left-0 right-0 bg-black z-50 shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
-        {/* Brand */}
-        <Link to="/" className="text-2xl font-extrabold text-white">
-          Moonshade
+        <Link to="/" className="text-2xl font-extrabold">
+        <span className="text-white font-bodoni">MOON</span>
+        <span className="text-sky-400 font-bodoni">SHADE</span>
         </Link>
 
-        {/* Desktop links */}
         <ul className="hidden md:flex gap-8 text-base font-medium">
           <li>
             <Link to="/" className="text-xl text-white hover:text-cyan-400">
@@ -91,7 +83,6 @@ const Navbar = () => {
           })}
         </ul>
 
-        {/* Right icons (desktop) */}
         <div className="hidden md:flex items-center gap-6 text-xl text-white">
           <button
             onClick={() => { setOverlayOpen(true); setMenuOpen(false); }}
@@ -105,7 +96,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile burger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden text-2xl text-white"
@@ -114,7 +104,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
       {menuOpen && (
         <div className="md:hidden bg-black text-white px-4 pb-6">
           <ul className="flex flex-col gap-4 text-lg font-medium">
@@ -149,7 +138,6 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Search overlay */}
       {overlayOpen && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex flex-col items-center pt-24 px-4 z-[60]">
           <div className="w-full max-w-xl">
@@ -162,12 +150,10 @@ const Navbar = () => {
 
                 const hits = suggestions;
                 if (hits.length === 1) {
-                  // exactly one match → go directly
                   setOverlayOpen(false);
                   setQuery("");
                   navigate(hits[0].path);
                 } else {
-                  // zero or many → go to /search
                   goFullSearch(query.trim());
                 }
               }}

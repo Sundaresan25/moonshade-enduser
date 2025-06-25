@@ -7,7 +7,7 @@ const Imprint = () => {
 
   return (
     <div className="bg-white min-h-screen py-16 px-4 md:px-8 lg:px-16 text-gray-800">
-      <div className="max-w-5xl mx-auto space-y-10">
+      <div className="max-w-5xl mx-auto space-y-10 mt-16">
         <button
           onClick={() => navigate(-1)}
           className="inline-flex items-center gap-3 text-base md:text-lg font-semibold text-cyan-700 hover:text-cyan-500 transition-transform duration-200 hover:scale-105 bg-cyan-100 px-4 py-2 rounded-full shadow-sm"

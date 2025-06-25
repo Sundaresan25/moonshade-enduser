@@ -7,7 +7,7 @@ const Disclaimer = () => {
 
   return (
     <div className="bg-white min-h-screen py-16 px-4 md:px-8 lg:px-16 text-gray-800">
-      <div className="max-w-5xl mx-auto space-y-10">
+      <div className="max-w-5xl mx-auto space-y-10 mt-16">
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
