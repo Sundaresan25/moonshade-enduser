@@ -29,7 +29,7 @@ const Login = () => {
       }}
     >
       {/* MOONSHADE text in top-left corner */}
-      <h1 className="absolute top-10 left-8 text-white text-4xl md:text-6xl font-extrabold drop-shadow-lg">
+      <h1 className="absolute top-14 left-8 text-white text-4xl md:text-6xl font-extrabold drop-shadow-lg">
         MOON
         <span className="text-cyan-400">SHADE</span>
       </h1>

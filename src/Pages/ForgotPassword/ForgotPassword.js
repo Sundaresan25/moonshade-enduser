@@ -24,7 +24,7 @@ const ForgotPassword = () => {
           'url("https://media.gettyimages.com/id/812718952/video/4k-abstract-bokeh-background-loop.jpg?s=640x640&k=20&c=ujDn2-KaU1qZFE6pEro-hnrIJOIzp1HunJYIdS8auvA=")',
       }}
     > {/* MOONSHADE text in top-left corner */}
-      <h1 className="absolute top-24 left-8 text-white text-4xl md:text-6xl font-extrabold drop-shadow-lg">
+      <h1 className="absolute top-28 left-8 text-white text-4xl md:text-6xl font-extrabold drop-shadow-lg">
         MOON
         <span className="text-cyan-400">SHADE</span>
       </h1>
