@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Options from '../../Components/Options';
-//import Button from '../../Components/Button';
 import CommonPage from '../../Components/CommonPage';
 import Lottie from 'lottie-react';
 
@@ -50,15 +49,13 @@ const Products = () => {
     <div className="font-sans bg-gray-100 pb-12">
       <CommonPage
         title="MOONSHADE"
-        subTitle="A creator of fragrances — every drop tells a story, crafted to evoke emotion and timeless beauty."
+        subTitle="A creator of fragrances."
         backgroundImage="https://img.pikbest.com/ai/illus_our/20230427/655d364dbe855341d5ed98aec55f14e3.jpg!w700wp"
         highlightWord="SHADE"
       />
 
-      {/* Filter/Search UI */}
       <Options onChange={setFilters} />
 
-      {/* Products are hidden for now */}
       {/*
       <div className="grid gap-6 px-4 py-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {filteredProducts.map((product, index) => (
@@ -80,7 +77,6 @@ const Products = () => {
       </div>
       */}
 
-      {/* New Collections Section */}
       <section id="new" className="bg-white">
         <div className="py-40 text-center px-4" data-aos="fade-up">
           <h2 className="text-5xl font-bold text-black mb-4 tracking-wide">New Collections</h2>

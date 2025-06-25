@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
-
 import CommonPage from "../../Components/CommonPage";
 
 const Contact = () => {
@@ -15,19 +14,13 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prev) => ({ ...prev, [name]: value }));
-
-    
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validate = () => {
     const newErrors = {};
 
-    
     if (!formData.name.trim()) {
       newErrors.name = "Name is required.";
     } else if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
@@ -36,14 +29,12 @@ const Contact = () => {
       newErrors.name = "Name must be under 100 characters.";
     }
 
-  
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
     } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(formData.email)) {
       newErrors.email = "Invalid email format.";
     }
 
-  
     if (!formData.message.trim()) {
       newErrors.message = "Message is required.";
     } else if (formData.message.length > 500) {
@@ -82,7 +73,7 @@ const Contact = () => {
           <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-gray-700">
             <div className="flex items-center gap-2">
               <span>📧</span>
-              <a href="mailto:support@perfumedesign.com" className="text-blue-600 hover:underline">
+              <a href="mailto:support@moonshade.com" className="text-blue-600 hover:underline">
                 support@moonshade.com
               </a>
             </div>
@@ -91,25 +82,24 @@ const Contact = () => {
               <span>+1 (555) 123-4567</span>
             </div>
             <div className="flex items-center gap-4 text-xl text-blue-600">
-  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
-    <FaFacebookF />
-  </a>
-  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
-    <FaTwitter />
-  </a>
-  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
-    <FaInstagram />
-  </a>
-  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
-    <FaYoutube />
-  </a>
-</div>
-
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
+                <FaFacebookF />
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
+                <FaTwitter />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
+                <FaInstagram />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
+                <FaYoutube />
+              </a>
+            </div>
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row gap-10">
-  
+          {/* Google Map */}
           <div className="md:w-2/2 w-full">
             <h3 className="text-xl font-semibold mb-4 text-gray-800">📍 Our Location</h3>
             <div className="rounded-lg overflow-hidden shadow-md h-80 w-full">
@@ -123,7 +113,7 @@ const Contact = () => {
             </div>
           </div>
 
-        
+          {/* Contact Form */}
           <div className="md:w-2/2 w-full">
             <h3 className="text-xl font-semibold mb-4 text-gray-800">📬 Send Us a Message</h3>
             {submitted ? (
@@ -131,8 +121,9 @@ const Contact = () => {
                 Thank you for reaching out! We'll respond shortly.
               </p>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name Field */}
+                <div className="space-y-1">
                   <input
                     type="text"
                     name="name"
@@ -143,10 +134,13 @@ const Contact = () => {
                       errors.name ? "border-red-500" : "border-gray-300"
                     } rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
                   />
-                  {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                  <div className="min-h-[20px]">
+                    {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+                  </div>
                 </div>
 
-                <div>
+                {/* Email Field */}
+                <div className="space-y-1">
                   <input
                     type="email"
                     name="email"
@@ -157,10 +151,13 @@ const Contact = () => {
                       errors.email ? "border-red-500" : "border-gray-300"
                     } rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
                   />
-                  {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                  <div className="min-h-[20px]">
+                    {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                  </div>
                 </div>
 
-                <div>
+                {/* Message Field */}
+                <div className="space-y-1">
                   <textarea
                     name="message"
                     placeholder="Message"
@@ -170,9 +167,12 @@ const Contact = () => {
                       errors.message ? "border-red-500" : "border-gray-300"
                     } rounded resize-none h-32 focus:outline-none focus:ring-2 focus:ring-blue-400`}
                   />
-                  {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+                  <div className="min-h-[20px]">
+                    {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
+                  </div>
                 </div>
 
+                {/* Submit Button */}
                 <button
                   type="submit"
                   className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-300"
