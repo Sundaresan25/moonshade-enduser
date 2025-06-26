@@ -17,19 +17,9 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div
-      className="flex items-center justify-center min-h-screen bg-cover bg-center"
-      style={{
-        backgroundImage:
-          'url("https://media.gettyimages.com/id/812718952/video/4k-abstract-bokeh-background-loop.jpg?s=640x640&k=20&c=ujDn2-KaU1qZFE6pEro-hnrIJOIzp1HunJYIdS8auvA=")',
-      }}
-    > {/* MOONSHADE text in top-left corner */}
-      <h1 className="absolute top-28 left-8 text-white text-4xl md:text-6xl font-extrabold drop-shadow-lg">
-        MOON
-        <span className="text-cyan-400">SHADE</span>
-      </h1>
-      <div className="max-w-md w-full p-6 border border-gray-300 rounded-lg bg-white bg-opacity-90 shadow-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+    <div className="relative flex items-center justify-center min-h-screen bg-black">
+      <div className="max-w-md w-full mx-8 p-6 border border-gray-300 rounded-lg bg-white bg-opacity-90 shadow-md">
+        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
           Forgot Password
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">

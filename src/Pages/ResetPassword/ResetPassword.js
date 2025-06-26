@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
@@ -6,8 +6,28 @@ const ResetPassword = () => {
   const location = useLocation();
   const email = location.state?.email || "";
 
-  const [formData, setFormData] = useState({ newPassword: "", confirmPassword: "" });
+  const [formData, setFormData] = useState({
+    otp: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
   const [message, setMessage] = useState("");
+  const [timer, setTimer] = useState(30);
+  const [isResendDisabled, setIsResendDisabled] = useState(true);
+
+  // Timer logic
+  useEffect(() => {
+    let countdown;
+    if (isResendDisabled && timer > 0) {
+      countdown = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else if (timer === 0) {
+      setIsResendDisabled(false);
+      clearInterval(countdown);
+    }
+    return () => clearInterval(countdown);
+  }, [isResendDisabled, timer]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,34 +35,54 @@ const ResetPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.newPassword || !formData.confirmPassword) {
+
+    if (!formData.otp || !formData.newPassword || !formData.confirmPassword) {
       setMessage("Please fill in all fields.");
     } else if (formData.newPassword !== formData.confirmPassword) {
       setMessage("Passwords do not match.");
     } else {
+      // Simulate OTP validation here if needed
       setMessage("Password reset successful!");
       setTimeout(() => navigate("/"), 2000);
     }
   };
 
+  const handleResendOtp = () => {
+    setIsResendDisabled(true);
+    setTimer(30);
+    // You can trigger your API to resend OTP here
+    setMessage("OTP has been resent to your email.");
+  };
+
   return (
-    <div
-      className="flex items-center justify-center min-h-screen bg-cover bg-center"
-      style={{
-        backgroundImage:
-          'url("https://media.gettyimages.com/id/812718952/video/4k-abstract-bokeh-background-loop.jpg?s=640x640&k=20&c=ujDn2-KaU1qZFE6pEro-hnrIJOIzp1HunJYIdS8auvA=")',
-      }}
-    >{/* MOONSHADE text in top-left corner */}
-      <h1 className="absolute top-24 left-8 text-white text-4xl md:text-6xl font-extrabold drop-shadow-lg">
-        MOON
-        <span className="text-cyan-400">SHADE</span>
-      </h1>
-      <div className="max-w-md w-full p-6 border border-gray-300 rounded-lg bg-white bg-opacity-90 shadow-md">
+    <div className="relative flex items-center justify-center min-h-screen bg-black">
+      <div className="max-w-md w-full mx-8 p-6 border border-gray-300 rounded-lg bg-white bg-opacity-90 shadow-md">
         <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
           Reset Password
         </h2>
         <p className="mb-4 text-center text-gray-600">For: {email}</p>
         <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            name="otp"
+            placeholder="Enter OTP"
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <div className="flex justify-between items-center">
+            <button
+              type="button"
+              onClick={handleResendOtp}
+              disabled={isResendDisabled}
+              className={`text-blue-600 hover:text-blue-800 text-sm ${isResendDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
+            >
+              Resend OTP
+            </button>
+            {isResendDisabled && (
+              <span className="text-gray-500 text-sm">{timer} sec</span>
+            )}
+          </div>
           <input
             type="password"
             name="newPassword"
