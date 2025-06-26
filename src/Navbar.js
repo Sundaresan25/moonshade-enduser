@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaHome, FaShoppingCart, FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { FaShoppingCart, FaSearch, FaBars, FaTimes } from "react-icons/fa";
 
 const pages = [
-  { name: "Home",     path: "/" },
+  { name: "Home", path: "/" },
   { name: "Products", path: "/products" },
-  { name: "Contact",  path: "/contact" },
-  { name: "Login",    path: "/login" },
   { name: "Register", path: "/register" },
-  { name: "Cart",     path: "/cart" },
-  { name: "Disclaimer",        path: "/disclaimer" },
-  { name: "Privacy Policy",    path: "/privacy-policy" },
-  { name: "Cookies",           path: "/cookies" },
+  { name: "Login", path: "/login" },
+  { name: "Contact", path: "/contact" },
+  { name: "Disclaimer", path: "/disclaimer" },
+  { name: "Privacy Policy", path: "/privacy-policy" },
+  { name: "Cookies", path: "/cookies" },
   { name: "Imprint / Legal Information", path: "/imprint-legal-information" },
 ];
 
@@ -19,17 +18,17 @@ const products = [
   { name: "Classic Musk", path: "/products/classic-musk" },
   { name: "Amber Nights", path: "/products/amber-nights" },
   { name: "Vanilla Ember", path: "/products/vanilla-ember" },
-  { name: "Royal Oud",     path: "/products/royal-oud" },
+  { name: "Royal Oud", path: "/products/royal-oud" },
 ];
 
 const searchIndex = [...pages, ...products];
 
 const Navbar = () => {
-  const [menuOpen,    setMenuOpen]    = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
-  const [query,       setQuery]       = useState("");
-  const navigate                        = useNavigate();
-  const inputRef                        = useRef(null);
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const h = (e) => e.key === "Escape" && setOverlayOpen(false);
@@ -41,12 +40,11 @@ const Navbar = () => {
     if (overlayOpen) inputRef.current?.focus();
   }, [overlayOpen]);
 
-  const suggestions =
-    query.trim()
-      ? searchIndex.filter((item) =>
-          item.name.toLowerCase().includes(query.toLowerCase())
-        )
-      : [];
+  const suggestions = query.trim()
+    ? searchIndex.filter((item) =>
+        item.name.toLowerCase().includes(query.toLowerCase())
+      )
+    : [];
 
   const goFullSearch = (q) => {
     setOverlayOpen(false);
@@ -58,23 +56,18 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 bg-black z-50 shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
         <Link to="/" className="text-2xl font-extrabold">
-        <span className="text-white font-bodoni">MOON</span>
-        <span className="text-sky-400 font-bodoni">SHADE</span>
+          <span className="text-white font-bodoni">MOON</span>
+          <span className="text-sky-400 font-bodoni">SHADE</span>
         </Link>
 
         <ul className="hidden md:flex gap-8 text-base font-medium">
-          <li>
-            <Link to="/" className="text-xl text-white hover:text-cyan-400">
-              <FaHome />
-            </Link>
-          </li>
-          {["Products", "Contact", "Login", "Register"].map((label) => {
+          {["Home", "Products", "Register", "Login", "Contact"].map((label) => {
             const { path } = pages.find((p) => p.name === label);
             return (
               <li key={label}>
                 <Link
                   to={path}
-                  className="text-white hover:text-cyan-400 transition"
+                  className={`text-white hover:text-cyan-400 transition`}
                 >
                   {label}
                 </Link>
@@ -85,7 +78,10 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center gap-6 text-xl text-white">
           <button
-            onClick={() => { setOverlayOpen(true); setMenuOpen(false); }}
+            onClick={() => {
+              setOverlayOpen(true);
+              setMenuOpen(false);
+            }}
             className="hover:text-cyan-400"
             aria-label="Open search"
           >
@@ -107,21 +103,26 @@ const Navbar = () => {
       {menuOpen && (
         <div className="md:hidden bg-black text-white px-4 pb-6">
           <ul className="flex flex-col gap-4 text-lg font-medium">
-            {pages.map((p) => (
-              <li key={p.path}>
-                <Link
-                  to={p.path}
-                  className="flex items-center gap-2 hover:text-cyan-400"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {p.name === "Home" && <FaHome />}
-                  {p.name}
-                </Link>
-              </li>
-            ))}
+            {["Home", "Products", "Register", "Login", "Contact"].map((label) => {
+              const { path } = pages.find((p) => p.name === label);
+              return (
+                <li key={label}>
+                  <Link
+                    to={path}
+                    className="flex items-center gap-2 hover:text-cyan-400"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
             <li className="flex gap-4 text-xl pt-2">
               <button
-                onClick={() => { setOverlayOpen(true); setMenuOpen(false); }}
+                onClick={() => {
+                  setOverlayOpen(true);
+                  setMenuOpen(false);
+                }}
                 className="hover:text-cyan-400"
               >
                 <FaSearch />

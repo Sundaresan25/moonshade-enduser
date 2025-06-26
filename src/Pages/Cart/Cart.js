@@ -18,12 +18,12 @@ const Cart = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 via-[#f8f8f8] to-white flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-gray-100 via-[#f8f8f8] to-white flex items-center justify-center px-4 py-28 font-fahkwang">
       <div className="bg-white/90 backdrop-blur-md border border-gray-200 rounded-3xl shadow-xl max-w-6xl w-full flex flex-col-reverse md:flex-row items-center gap-12 p-6 md:p-12 transition-all duration-300">
 
         {/* Left: Content */}
         <div className="md:w-1/2 text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
+          <h1 className="text-4xl md:text-5xl font-black text-gray-800 mb-4">
             Your Cart is Empty 🛍️
           </h1>
           <p className="text-lg text-gray-600 mb-3">
@@ -35,7 +35,7 @@ const Cart = () => {
 
           <button
             onClick={handleNotifyClick}
-            className="bg-black/80 hover:bg-black text-white px-6 py-3 rounded-full backdrop-blur-sm transition-all shadow-md hover:scale-105"
+            className="bg-black/80 hover:bg-black text-white px-6 py-3 rounded-full backdrop-blur-sm transition-all shadow-md"
           >
             Notify Me When Live
           </button>

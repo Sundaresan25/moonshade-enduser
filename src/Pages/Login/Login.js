@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import navigation
+import { useNavigate } from "react-router-dom"; 
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // Initialize navigation
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,13 +22,12 @@ const Login = () => {
 
   return (
     <div
-      className="relative flex items-center justify-center min-h-screen bg-cover bg-center"
+      className="relative flex items-center justify-center min-h-screen bg-cover bg-center mt-12"
       style={{
         backgroundImage:
           'url("https://media.gettyimages.com/id/812718952/video/4k-abstract-bokeh-background-loop.jpg?s=640x640&k=20&c=ujDn2-KaU1qZFE6pEro-hnrIJOIzp1HunJYIdS8auvA=")',
       }}
     >
-      {/* MOONSHADE text in top-left corner */}
       <h1 className="absolute top-14 left-8 text-white text-4xl md:text-6xl font-extrabold drop-shadow-lg">
         MOON
         <span className="text-cyan-400">SHADE</span>
@@ -66,7 +65,7 @@ const Login = () => {
         <p className="mt-4">
           <button
             type="button"
-            onClick={() => navigate("/forgot-password")} // Navigate to Forgot Password page
+            onClick={() => navigate("/forgot-password")} 
             className="text-blue-600 hover:underline bg-transparent border-none p-0 m-0 cursor-pointer"
           >
             Forgot Password?

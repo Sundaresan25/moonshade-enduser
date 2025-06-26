@@ -25,70 +25,53 @@ const Home = () => {
     <div className="bg-black text-white scroll-smooth">
       <Carousel />
 
-      <section id="about" className="w-full bg-white py-16 px-4">
-        <div className="max-w-7xl mx-auto px-4 md:px-12">
-          <div className="mb-12" data-aos="fade-up">
-            <h2 className="text-5xl font-bold mb-9 text-black text-center font-fahkwang">About Us</h2>
-            <h2 className="text-2xl md:text-3xl font-semibold text-cyan-600 font-fahkwang">
-              100% of Our Customers
-            </h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-black font-fahkwang">
-              Trust Us as a Signature Fragrance Partner
-            </h3>
-          </div>
+      <section id="about" className="w-full bg-black py-16 px-4">
+  <div className="max-w-7xl mx-auto px-4 md:px-12">
+    <div className="mb-12" data-aos="fade-up">
+      <h2 className="text-5xl font-bold mb-9 text-white text-center font-fahkwang">About Us</h2>
+      <h2 className="text-2xl md:text-3xl font-semibold text-cyan-400 font-fahkwang">
+        100% of Our Customers
+      </h2>
+      <h3 className="text-3xl md:text-4xl font-bold text-white font-fahkwang">
+        Trust Us as a Signature Fragrance Partner
+      </h3>
+    </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="w-full" data-aos="fade-right">
-              <img
-                src="https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGVyZnVtZXN8ZW58MHx8MHx8fDA%3D"
-                alt="MOONSHADE Perfume"
-                className="w-full h-[80vh] object-cover shadow-md"
-              />
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div className="w-full" data-aos="fade-right">
+        <img
+          src="https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGVyZnVtZXN8ZW58MHx8MHx8fDA%3D"
+          alt="MOONSHADE Perfume"
+          className="w-full h-[80vh] object-cover shadow-md"
+        />
+      </div>
 
-            <div className="p-6 md:p-0" data-aos="fade-left">
-              <p className="text-xl leading-relaxed text-gray-800 mb-4 font-fahkwang">
-                Discover the essence of luxury at <span className="font-semibold text-black font-fahkwang">MOONSHADE Perfumes</span>.
-                Our carefully crafted scents are designed to captivate your senses and leave a lasting impression.
-                With limited-edition creations and bespoke formulations, we invite you into a realm where sophistication meets artistry, ensuring that your scent remains uniquely yours.
-              </p>
-              <p className="text-xl leading-relaxed text-gray-800 font-fahkwang">
-                We are curators of rare and exclusive fragrances, dedicated to redefining luxury through the art of fine perfumery.
-                Each bottle we curate embodies sophistication, exclusivity, and timeless allure, ensuring that your signature scent remains unmistakably yours.
-              </p>
-              <div className="mt-6 text-black font-bold text-lg font-fahkwang">
-                MOONSHADE Team <span className="font-normal text-gray-600">| Artisans of Fragrance</span>
-              </div>
-            </div>
-          </div>
+      <div className="p-6 md:p-0" data-aos="fade-left">
+        <p className="text-xl leading-relaxed text-gray-200 mb-4 font-fahkwang">
+          Discover the essence of luxury at <span className="font-bold text-white">MOONSHADE Perfumes</span>.
+          Our carefully crafted scents are designed to captivate your senses and leave a lasting impression.
+          With limited-edition creations and bespoke formulations, we invite you into a realm where sophistication meets artistry, ensuring that your scent remains uniquely yours.
+        </p>
+        <p className="text-xl leading-relaxed text-gray-200 font-fahkwang">
+          We are curators of rare and exclusive fragrances, dedicated to redefining luxury through the art of fine perfumery.
+          Each bottle we curate embodies sophistication, exclusivity, and timeless allure, ensuring that your signature scent remains unmistakably yours.
+        </p>
+        <div className="mt-6 text-white font-bold text-lg font-fahkwang">
+          MOONSHADE Team <span className="font-normal text-gray-400">| Artisans of Fragrance</span>
         </div>
-      </section>
-
-      <section
-        id="what"
-        className="bg-white text-black px-12 py-24 max-w-8xl mx-auto"
-        data-aos="zoom-in"
-      >
-        <h2 className="text-5xl font-bold mb-9 text-center bg-white text-black pb-8 font-fahkwang">
-          What We Do
-        </h2>
-        <div className="text-xl leading-relaxed font-fahkwang">
-          <p className="border-l-4 border-cyan-800 pl-6 font-fahkwang">
-            At <span className="text-black font-semibold font-fahkwang">MOONSHADE</span>, we go beyond scent—we craft immersive olfactory journeys that awaken memory, emotion, and identity.
-            Our team of artisan perfumers blends tradition with innovation, using rare ingredients sourced from around the world to compose signature fragrances that embody timeless elegance.
-            From everyday refinement to rare collectibles, each creation is designed to elevate your presence with subtlety and power.
-          </p>
-        </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
      
-      <h2 className="text-5xl font-bold mb-9 text-center bg-white text-black pb-8 font-fahkwang" data-aos="zoom-in">
+      <h2 className="text-5xl font-bold mb-9 text-center bg-black text-white pb-8 font-fahkwang" data-aos="zoom-in">
         Explore Our Scents
       </h2>
       <section className="grid grid-cols-1 md:grid-cols-3 text-white text-center">
         
         <div className="relative h-[700px] overflow-hidden" data-aos="zoom-in-up">
           <img
-            src="https://media.istockphoto.com/id/893005976/photo/perfume-with-a-strong-smell.jpg?s=612x612&w=0&k=20&c=qvDF7igjfzsNZBINSwZsEt7UiKquxm_gbqp2OCZQ4xo="
+            src="https://img5.goodfon.com/wallpaper/big/6/63/black-golden-luxury-canva-background-abstract-geometric-fon.jpg"
             alt="Signature Scents"
             className="w-full h-full object-cover"
           />
@@ -102,7 +85,7 @@ const Home = () => {
      
         <div className="relative h-[700px] overflow-hidden" data-aos="zoom-in-up" data-aos-delay="100">
           <img
-            src="https://cdn.pixabay.com/photo/2022/12/06/18/30/perfume-7639482_1280.jpg"
+            src="https://img.freepik.com/premium-photo/abstract-black-gold-background-with-lines-style-linear-simplicity_921860-152601.jpg"
             alt="Limited Edition"
             className="w-full h-full object-cover"
           />
@@ -116,7 +99,7 @@ const Home = () => {
         
         <div className="relative h-[700px] overflow-hidden" data-aos="zoom-in-up" data-aos-delay="200">
           <img
-            src="https://media.istockphoto.com/id/893005976/photo/perfume-with-a-strong-smell.jpg?s=612x612&w=0&k=20&c=qvDF7igjfzsNZBINSwZsEt7UiKquxm_gbqp2OCZQ4xo="
+            src="https://img5.goodfon.com/wallpaper/big/6/63/black-golden-luxury-canva-background-abstract-geometric-fon.jpg"
             alt="Ultra-Rare Edition"
             className="w-full h-full object-cover"
           />
@@ -129,17 +112,17 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="new" className="bg-white">
+      <section id="new" className="bg-black">
         <div className="py-40 text-center px-4" data-aos="fade-up">
-          <h2 className="text-5xl font-bold text-black mb-4 tracking-wide">New Collections</h2>
+          <h2 className="text-5xl font-bold text-white mb-4 tracking-wide font-[Playfair Display] italic">New Collections</h2>
           <div className="flex justify-center">
             {animationData ? (
               <Lottie animationData={animationData} loop={true} className="w-80 h-80" />
             ) : (
-              <p className="text-gray-500">Loading animation...</p>
+              <p className="text-gray-500 font-fahkwang">Loading animation...</p>
             )}
           </div>
-          <p className="text-xl text-gray-700 font-medium mt-4">Launching Soon...</p>
+          <p className="text-xl text-white-200 font-medium mt-4 font-fahkwang">Launching Soon...</p>
         </div>
       </section>
     </div>
