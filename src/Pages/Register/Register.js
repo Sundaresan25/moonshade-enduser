@@ -26,20 +26,9 @@ const Register = () => {
   };
 
   return (
-    <div
-      className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
-      style={{
-        backgroundImage:
-          'url("https://wallpapercave.com/wp/wp10228440.jpg")',
-      }}
-    >
-      {/* Moonshade Text */}
-      <h1 className="absolute top-10 left-8 text-white text-4xl md:text-6xl font-extrabold drop-shadow-lg">
-        MOON
-        <span class="text-cyan-400">SHADE</span>
-      </h1>
+    <div className="relative flex items-center justify-center min-h-screen bg-black">
       {/* Registration Form */}
-      <div className="max-w-md w-full p-6 border border-gray-300 rounded-lg text-center bg-white bg-opacity-90 shadow-md">
+      <div className="max-w-md w-full mx-8 p-6 border border-gray-300 rounded-lg text-center bg-white bg-opacity-90 shadow-md">
         <h2 className="text-2xl font-bold mb-4">Register</h2>
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
           <input
