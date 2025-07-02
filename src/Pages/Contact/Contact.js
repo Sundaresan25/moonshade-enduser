@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6"; 
 import CommonPage from "../../Components/CommonPage";
 
 const Contact = () => {
@@ -61,7 +62,7 @@ const Contact = () => {
     <div className="font-fahkwang bg-white pb-12">
       <CommonPage
         title="Contact Us"
-        subTitle="Contact Us page is simple, easy to read, and broken out into helpful sections."
+        subTitle="Every scent begins with a story, the essence of luxury is just a message away, let yours begin with us."
         backgroundImage="https://wallpapers.com/images/hd/plain-black-background-image-p7zyn3zjoo0toue5.jpg"
         highlightWord="Us"
       />
@@ -74,13 +75,13 @@ const Contact = () => {
               📧 support@moonshade.com
             </a>
             <div className="flex gap-4 text-xl text-blue-600">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-700">
                 <FaFacebookF />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
-                <FaTwitter />
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-black-800">
+                <FaXTwitter />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-pink-800">
                 <FaInstagram />
               </a>
             </div>

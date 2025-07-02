@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaUser, FaLock } from "react-icons/fa";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -21,45 +22,69 @@ const Login = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-black">
-      <div className="max-w-md w-full mx-8 py-6 px-6 border border-gray-300 rounded-lg text-center bg-white bg-opacity-90 shadow-md">
-        <h2 className="text-4xl font-bold mb-9">Login</h2>
-        <form onSubmit={handleSubmit} className="space-y-9 text-left">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+    <div
+      className="min-h-screen flex items-center justify-center bg-cover bg-center px-4 font-fahkwang"
+      style={{
+        backgroundImage:
+          "url('https://wallup.net/wp-content/uploads/2017/03/27/228688-minimalism-digital_art-black_background-748x421.jpg')",
+      }}
+    >
+      <div className="bg-white/90 shadow-2xl p-8 sm:p-10 w-full max-w-md space-y-6">
+        <h2 className="text-black text-4xl font-semibold text-center"
+          style={{ fontFamily: "'Cinzel', serif" }}>
+          Login
+        </h2>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 shadow-inner">
+            <FaUser className="text-gray-500 mr-2" />
+            <input
+              type="text"
+              name="email"
+              placeholder="Username"
+              onChange={handleChange}
+              className="bg-transparent text-black w-full outline-none font-fahkwang"
+              required
+            />
+          </div>
+
+          <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 shadow-inner">
+            <FaLock className="text-gray-500 mr-2" />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={handleChange}
+              className="bg-transparent text-black w-full outline-none font-fahkwang"
+              required
+            />
+          </div>
+
+          <div className="flex items-center justify-between text-sm text-gray-600">
+            <label className="flex items-center space-x-1">
+              <input type="checkbox" className="accent-blue-600" />
+              <span>Remember me</span>
+            </label>
+            <button
+              type="button"
+              onClick={() => navigate("/forgot-password")}
+              className="text-blue-600 hover:underline"
+            >
+              Forgot Password?
+            </button>
+          </div>
+
           {error && (
-            <p className="text-red-600 font-semibold text-sm">{error}</p>
+            <p className="text-red-500 text-sm text-center">{error}</p>
           )}
+
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+            className="w-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white py-2 rounded-lg font-bold transition"
           >
-            Login
+            LOGIN
           </button>
         </form>
-        <p className="mt-4">
-          <button
-            type="button"
-            onClick={() => navigate("/forgot-password")}
-            className="text-blue-600 hover:underline bg-transparent border-none pt-6 m-0 cursor-pointer"
-          >
-            Forgot Password?
-          </button>
-        </p>
       </div>
     </div>
   );

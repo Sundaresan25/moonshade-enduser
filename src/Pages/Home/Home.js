@@ -57,7 +57,7 @@ const Home = () => {
           Each bottle we curate embodies sophistication, exclusivity, and timeless allure, ensuring that your signature scent remains unmistakably yours.
         </p>
         <div className="mt-6 text-white font-bold text-lg font-fahkwang">
-          MOONSHADE Team <span className="font-normal text-gray-400">| Artisans of Fragrance</span>
+          MOONSHADE Team <span className="font-normal text-gray-200">| Artisans of Fragrance</span>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@ const Home = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90 flex flex-col justify-end pb-20 items-center px-4">
             <h3 className="text-3xl font-bold font-lampard mb-14 leading-[1.2] tracking-wide capitalize">Signature Scents</h3>
-            <p className="text-lg tracking-wide max-w-xs leading-relaxed mb-36 uppercase">
+            <p className="text-lg tracking-wide max-w-xs leading-relaxed mb-36 uppercase font-fahkwang">
               Indulge in the allure of our signature scents, each created with a unique blend of rare ingredients to evoke elegance and sophistication.
             </p>
           </div>
@@ -90,8 +90,8 @@ const Home = () => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90 flex flex-col justify-end pb-20 items-center px-4">
-            <h3 className="text-4xl uppercase font-syne mb-10">Limited Edition</h3>
-            <p className="text-lg tracking-wide max-w-xs leading-relaxed mb-36 uppercase">
+            <h3 className="text-5xl uppercase font-syne mb-12">Limited Edition</h3>
+            <p className="text-lg tracking-wide max-w-xs leading-relaxed mb-36 uppercase font-fahkwang">
               Experience exclusivity with our limited edition perfumes, meticulously formulated to offer a sense of individuality and refinement.
             </p>
           </div>
@@ -104,8 +104,8 @@ const Home = () => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90 flex flex-col justify-end pb-20 items-center px-4">
-            <h3 className="text-5xl uppercase font-revivalisem mb-10">Ultra-Rare Edition</h3>
-            <p className="text-lg tracking-wide max-w-xs leading-relaxed mb-36 uppercase">
+            <h3 className="text-5xl uppercase font-revivalisem mb-6">Ultra-Rare Edition</h3>
+            <p className="text-lg tracking-wide max-w-xs leading-relaxed mb-36 uppercase font-fahkwang">
               Each scent is a unique masterpiece, with limited production, ensuring you own something truly special for those who cherish the beauty of fragrance.
             </p>
           </div>
