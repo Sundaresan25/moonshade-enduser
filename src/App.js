@@ -15,7 +15,9 @@ import Cookies from "./Pages/Disclaimer/Cookies";
 import Imprint from "./Pages/Disclaimer/Imprint";
 import SearchResults from "./Components/SearchResults";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
-import ResetPassword from "./Pages/ResetPassword/ResetPassword";
+import SetNewPassword from "./Pages/SetNewPassword/SetNewPassword";
+import VerifyOtp from "./Pages/VerifyOtp/VerifyOtp";
+
 
 const App = () => (
    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
@@ -26,7 +28,8 @@ const App = () => (
       <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword/>}/>
-      <Route path="/reset-password" element={<ResetPassword/>}/>
+      <Route path="/verify-otp" element={<VerifyOtp />} />
+      <Route path="/set-new-password" element={<SetNewPassword />} />
       <Route path="/register" element={<Register />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/search" element={<SearchResults />} />

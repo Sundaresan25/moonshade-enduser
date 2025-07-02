@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaKey } from "react-icons/fa"; 
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const ForgotPassword = () => {
       setMessage("Please enter your email.");
     } else {
       setMessage("");
-      navigate("/reset-password", { state: { email } });
+      navigate("/verify-otp", { state: { email } });
     }
   };
 
@@ -26,9 +26,12 @@ const ForgotPassword = () => {
       }}
     >
       <div className="max-w-md w-full mx-4 p-8 sm:p-10 bg-white/90 shadow-2xl space-y-6">
-        <h2 className="text-3xl text-center font-semibold text-gray-800 font-fahkwang">
-          Forgot Password
-        </h2>
+        <div className="flex items-center justify-center space-x-2">
+          <FaKey className="text-2xl text-black" />
+          <h2 className="text-3xl font-semibold text-gray-800 text-center font-fahkwang">
+            Forgot Password
+          </h2>
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 shadow-inner">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaLock, FaUserPlus } from "react-icons/fa"; 
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -38,14 +38,19 @@ const Register = () => {
       }}
     >
       <div className="bg-white/90 shadow-2xl p-8 sm:p-10 w-full max-w-md space-y-6">
-        <h2
-          className="text-black text-4xl font-semibold text-center"
-          style={{ fontFamily: "'Cinzel', serif" }}
-        >
-          Register
-        </h2>
+      
+        <div className="flex items-center justify-center space-x-2">
+          <FaUserPlus className="text-2xl text-black" />
+          <h2
+            className="text-black text-4xl font-semibold text-center"
+            style={{ fontFamily: "'Cinzel', serif" }}
+          >
+            Register
+          </h2>
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
+
           <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 shadow-inner">
             <FaUser className="text-gray-500 mr-2" />
             <input

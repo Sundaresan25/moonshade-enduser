@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUser, FaLock } from "react-icons/fa";
+import { FaUser, FaLock, FaSignInAlt } from "react-icons/fa";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -30,10 +30,16 @@ const Login = () => {
       }}
     >
       <div className="bg-white/90 shadow-2xl p-8 sm:p-10 w-full max-w-md space-y-6">
-        <h2 className="text-black text-4xl font-semibold text-center"
-          style={{ fontFamily: "'Cinzel', serif" }}>
-          Login
-        </h2>
+        
+        <div className="flex items-center justify-center space-x-2">
+          <FaSignInAlt className="text-3xl text-black-600" />
+          <h2
+            className="text-black text-4xl font-semibold"
+            style={{ fontFamily: "'Cinzel', serif" }}
+          >
+            Login
+          </h2>
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 shadow-inner">

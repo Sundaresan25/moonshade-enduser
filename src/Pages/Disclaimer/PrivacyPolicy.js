@@ -6,29 +6,42 @@ const PrivacyPolicy = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white min-h-screen py-16 px-4 md:px-8 lg:px-16 text-gray-800">
+    <div className="bg-white min-h-screen py-16 px-4 md:px-8 lg:px-16 text-gray-800 font-fahkwang">
       <div className="max-w-5xl mx-auto space-y-10 mt-16">
         <button
           onClick={() => navigate(-1)}
-          className="inline-flex items-center gap-3 text-base md:text-lg font-semibold text-cyan-700 hover:text-cyan-500 transition-transform duration-200 hover:scale-105 bg-cyan-100 px-4 py-2 rounded-full shadow-sm"
+          className="inline-flex items-center gap-3 text-base md:text-lg font-semibold text-cyan-700 hover:text-cyan-500 transition-transform duration-200 hover:scale-105 bg-cyan-100 px-4 py-2 rounded-full shadow-sm font-fahkwang"
         >
-          <FaArrowLeft className="text-xl" />
-          Back to Previous Page
+          <FaArrowLeft className="text-xl font-fahkwang" />
+          <span className="font-fahkwang">Back to Previous Page</span>
         </button>
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black tracking-tight">
+        <h1 className="text-4xl lg:text-5xl font-extrabold text-black tracking-tight font-bodoni">
           Privacy Policy
         </h1>
 
-        <p className="text-lg text-gray-700 leading-relaxed">
-          At <span className="font-semibold text-black">MOONSHADE Perfumes</span>, we value your privacy and are committed to protecting your personal data.
-          This policy outlines how we collect, use, and safeguard your information when you visit our website or engage with our services.
+        <p className="text-lg leading-relaxed text-gray-700">
+          Your privacy is important to us. This privacy policy explains how we collect, use, and protect your personal information at <span className="font-semibold text-black">MOONSHADE</span>.
         </p>
 
-        <p className="text-lg text-gray-700 leading-relaxed">
-          Your information is never shared with third parties unless required by law or with your explicit consent.
-          We implement robust security measures to protect your data from unauthorized access or misuse.
-        </p>
+        <div className="space-y-6">
+          <h2 className="text-2xl font-bold text-black font-bodoni">Information We Collect</h2>
+          <ul className="list-disc list-inside space-y-2 text-lg text-gray-700">
+            <li>Personal details you provide during registration</li>
+            <li>Payment and transaction data</li>
+            <li>Usage information and cookies</li>
+          </ul>
+
+          <h2 className="text-2xl font-bold text-black font-bodoni">How We Use Information</h2>
+          <p className="text-lg text-gray-700">
+            We use your data to provide personalized experiences, fulfill orders, improve our services, and communicate with you.
+          </p>
+
+          <h2 className="text-2xl font-bold text-black font-bodoni">Data Security</h2>
+          <p className="text-lg text-gray-700">
+            We implement secure systems and processes to safeguard your information from unauthorized access or disclosure.
+          </p>
+        </div>
 
         <p className="text-sm text-gray-500 pt-8">Last updated: June 2025</p>
       </div>
