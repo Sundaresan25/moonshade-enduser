@@ -4,10 +4,30 @@ import CommonPage from '../../Components/CommonPage';
 import Lottie from 'lottie-react';
 
 const rawProducts = [
-  { name: "Signature Perfume", description: "Day & night exclusive scents.", price: "$50", image: "https://th.bing.com/th/id/OIP.vQ-FnprzqcOEhJduAhYlvwHaE8?w=294&h=196&c=7&r=0&o=7&pid=1.7&rm=3" },
-  { name: "Custom Blend", description: "A fragrance tailored to you.", price: "$75", image: "https://th.bing.com/th/id/OIF.r9AwOVljjspLlRYFWVas9A?w=270&h=180&c=7&r=0&o=7&pid=1.7&rm=3" },
-  { name: "Seasonal Collection", description: "Inspired by seasonal magic.", price: "$60", image: "https://th.bing.com/th/id/OIP.aumddiaYioAcktjUXavjlwHaE7?w=294&h=196&c=7&r=0&o=7&pid=1.7&rm=3" },
-  { name: "Gift Sets", description: "Ideal for special occasions.", price: "$80", image: "https://th.bing.com/th/id/OIF.CHEuskN2qo1c4luwqVMsOg?w=230&h=180&c=7&r=0&o=7&pid=1.7&rm=3" }
+  {
+    name: "Signature Perfume",
+    description: "Day & night exclusive scents.",
+    price: "$50",
+    image: "https://th.bing.com/th/id/OIP.vQ-FnprzqcOEhJduAhYlvwHaE8?w=294&h=196&c=7&r=0&o=7&pid=1.7&rm=3"
+  },
+  {
+    name: "Custom Blend",
+    description: "A fragrance tailored to you.",
+    price: "$75",
+    image: "https://th.bing.com/th/id/OIF.r9AwOVljjspLlRYFWVas9A?w=270&h=180&c=7&r=0&o=7&pid=1.7&rm=3"
+  },
+  {
+    name: "Seasonal Collection",
+    description: "Inspired by seasonal magic.",
+    price: "$60",
+    image: "https://th.bing.com/th/id/OIP.aumddiaYioAcktjUXavjlwHaE7?w=294&h=196&c=7&r=0&o=7&pid=1.7&rm=3"
+  },
+  {
+    name: "Gift Sets",
+    description: "Ideal for special occasions.",
+    price: "$80",
+    image: "https://th.bing.com/th/id/OIF.CHEuskN2qo1c4luwqVMsOg?w=230&h=180&c=7&r=0&o=7&pid=1.7&rm=3"
+  }
 ];
 
 const parsePrice = (price) => parseFloat(price.replace('$', ''));
@@ -41,53 +61,45 @@ const Products = () => {
     });
 
   const handleAddToCart = (product) => {
-    console.log('Added to cart:', product);
     alert(`${product.name} added to cart.`);
   };
 
   return (
     <div className="font-sans bg-gray-100 pb-12">
+      {/* Banner */}
       <CommonPage
         title="MOONSHADE"
-        subTitle="A creator of fragrances."
+        subTitle="Step into a world of elegance and allure, indulge in timeless fragrances that awaken your senses, made to be remembered."
         backgroundImage="https://img.pikbest.com/ai/illus_our/20230427/655d364dbe855341d5ed98aec55f14e3.jpg!w700wp"
         highlightWord="SHADE"
       />
 
+      {/* Filters */}
       <Options onChange={setFilters} />
 
-      {/*
-      <div className="grid gap-6 px-4 py-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {filteredProducts.map((product, index) => (
-          <div
-            className="bg-white rounded-xl shadow-md p-4 flex flex-col hover:shadow-lg hover:-translate-y-1 transition"
-            key={index}
-          >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-64 object-cover rounded-md mb-3"
-            />
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">{product.name}</h3>
-            <p className="text-sm text-gray-600 mb-2">{product.description}</p>
-            <span className="text-blue-600 font-bold mt-auto">{product.price}</span>
-            <Button onClick={() => handleAddToCart(product)}>Add to Cart</Button>
+      {/* New Collections */}
+      <section id="new" className="bg-white py-20 px-4">
+        <div className="max-w-5xl mx-auto text-center" data-aos="fade-up">
+          {/* Heading with lines */}
+          <div className="flex items-center justify-center mb-12">
+            <div className="flex-grow border-t border-gray-300"></div>
+            <h2 className="text-5xl font-bold text-black mb-4 tracking-wide font-[Playfair Display] italic">
+              New Collections
+            </h2>
+            <div className="flex-grow border-t border-gray-300"></div>
           </div>
-        ))}
-      </div>
-      */}
 
-      <section id="new" className="bg-white">
-        <div className="py-40 text-center px-4" data-aos="fade-up">
-          <h2 className="text-5xl font-bold text-black mb-4 tracking-wide">New Collections</h2>
-          <div className="flex justify-center">
+          {/* Animation */}
+          <div className="flex justify-center mb-6">
             {animationData ? (
-              <Lottie animationData={animationData} loop={true} className="w-80 h-80" />
+              <Lottie animationData={animationData} loop className="w-60 h-60" />
             ) : (
               <p className="text-gray-500">Loading animation...</p>
             )}
           </div>
-          <p className="text-xl text-gray-700 font-medium mt-4">Launching Soon...</p>
+
+          {/* Subtext */}
+          <p className="text-xl text-black-200 font-medium mt-4">Launching Soon...</p>
         </div>
       </section>
     </div>

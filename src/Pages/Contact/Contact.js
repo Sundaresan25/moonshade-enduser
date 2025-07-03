@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import axios from "axios";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import CommonPage from "../../Components/CommonPage";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     message: "",
   });
@@ -21,12 +24,16 @@ const Contact = () => {
   const validate = () => {
     const newErrors = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required.";
-    } else if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
-      newErrors.name = "Name must contain only letters and spaces.";
-    } else if (formData.name.length > 100) {
-      newErrors.name = "Name must be under 100 characters.";
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = "First name is required.";
+    } else if (!/^[a-zA-Z\s]+$/.test(formData.firstName)) {
+      newErrors.firstName = "First name must contain only letters and spaces.";
+    }
+
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = "Last name is required.";
+    } else if (!/^[a-zA-Z\s]+$/.test(formData.lastName)) {
+      newErrors.lastName = "Last name must contain only letters and spaces.";
     }
 
     if (!formData.email.trim()) {
@@ -44,14 +51,42 @@ const Contact = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
 
     if (Object.keys(validationErrors).length === 0) {
-      setSubmitted(true);
-      setFormData({ name: "", email: "", message: "" });
-      setErrors({});
+      try {
+        const response = await axios.post("https://api.emailjs.com/api/v1.0/email/send", {
+          service_id: "service_eazu8ge",
+          template_id: "template_z2qsn7i",
+          user_id: "qUQ87ud5_KyPb3esF",
+          template_params: {
+            name: `${formData.firstName} ${formData.lastName}`,
+            email: formData.email,
+            message: formData.message,
+          },
+        });
+
+        if (response.status === 200) {
+          const result = {
+            status: 200,
+            text: "OK",
+            __proto__: Object.prototype,
+          };
+          console.log("Email sent successfully!", result);
+
+          setSubmitted(true);
+          setFormData({ firstName: "", lastName: "", email: "", message: "" });
+          setErrors({});
+        } else {
+          console.error("Email sending failed:", response);
+          setSubmitted(false);
+        }
+      } catch (error) {
+        console.error("Error sending email:", error);
+        setSubmitted(false);
+      }
     } else {
       setErrors(validationErrors);
       setSubmitted(false);
@@ -59,130 +94,114 @@ const Contact = () => {
   };
 
   return (
-    <div className="font-sans bg-white pb-12">
+    <div className="font-fahkwang bg-white pb-12">
       <CommonPage
         title="Contact Us"
-        subTitle="Contact Us page is simple, easy to read, and broken out into helpful sections. It also lists out its office locations and email addresses for additional ways to get in touch."
-        backgroundImage="https://img.freepik.com/premium-vector/abstract-futuristic-location-point-gps-pin-digital-map-concept-dark-blue-background-design_618588-1172.jpg"
+        subTitle="Every scent begins with a story, the essence of luxury is just a message away, let yours begin with us."
+        backgroundImage="https://wallpapers.com/images/hd/plain-black-background-image-p7zyn3zjoo0toue5.jpg"
         highlightWord="Us"
       />
 
-      <div className="max-w-6xl mx-auto px-4 py-10 bg-white rounded-lg shadow-lg">
-        <div className="text-center mb-10 space-y-4">
-          <h2 className="text-3xl font-bold">Contact Us</h2>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-gray-700">
-            <div className="flex items-center gap-2">
-              <span>📧</span>
-              <a href="mailto:support@moonshade.com" className="text-blue-600 hover:underline">
-                support@moonshade.com
-              </a>
-            </div>
-            <div className="flex items-center gap-2">
-              <span>📞</span>
-              <span>+1 (555) 123-4567</span>
-            </div>
-            <div className="flex items-center gap-4 text-xl text-blue-600">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
+      <div className="max-w-3xl mx-auto my-10 px-4 py-10 bg-white rounded-lg shadow-lg">
+        <div className="text-center mb-6 space-y-3">
+          <h2 className="text-3xl font-bold text-gray-800">Send Us a Message</h2>
+          <div className="flex justify-center items-center gap-6 text-gray-700">
+            <a href="mailto:support@moonshade.com" className="text-blue-600 hover:underline">
+              📧 support@moonshade.com
+            </a>
+            <div className="flex gap-4 text-xl text-blue-600">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-700">
                 <FaFacebookF />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
-                <FaTwitter />
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-black-800">
+                <FaXTwitter />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-pink-800">
                 <FaInstagram />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
-                <FaYoutube />
-              </a>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-10">
-          {/* Google Map */}
-          <div className="md:w-2/2 w-full">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">📍 Our Location</h3>
-            <div className="rounded-lg overflow-hidden shadow-md h-80 w-full">
-              <iframe
-                title="Google Map"
-                className="w-full h-full border-0"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019091715606!2d-122.4206790846823!3d37.7785196797586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c869ab6b1%3A0x2f035b870ec7bc65!2s123%20Fragrance%20Lane%2C%20Aroma%20City%2C%20USA!5e0!3m2!1sen!2sus!4v1684028437435!5m2!1sen!2sus"
-                allowFullScreen=""
-                loading="lazy"
-              ></iframe>
+        {submitted ? (
+          <p className="text-green-600 font-medium text-center">
+            Thank you for reaching out! We'll respond shortly.
+          </p>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1 space-y-1">
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="First Name"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-2 border ${
+                    errors.firstName ? "border-red-500" : "border-gray-300"
+                  } rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                />
+                <div className="min-h-[20px]">
+                  {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
+                </div>
+              </div>
+
+              <div className="flex-1 space-y-1">
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Last Name"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-2 border ${
+                    errors.lastName ? "border-red-500" : "border-gray-300"
+                  } rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                />
+                <div className="min-h-[20px]">
+                  {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
+                </div>
+              </div>
             </div>
-          </div>
 
-          {/* Contact Form */}
-          <div className="md:w-2/2 w-full">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">📬 Send Us a Message</h3>
-            {submitted ? (
-              <p className="text-green-600 font-medium">
-                Thank you for reaching out! We'll respond shortly.
-              </p>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name Field */}
-                <div className="space-y-1">
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-2 border ${
-                      errors.name ? "border-red-500" : "border-gray-300"
-                    } rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
-                  />
-                  <div className="min-h-[20px]">
-                    {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
-                  </div>
-                </div>
+            <div className="space-y-1">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                className={`w-full px-4 py-2 border ${
+                  errors.email ? "border-red-500" : "border-gray-300"
+                } rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
+              />
+              <div className="min-h-[20px]">
+                {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+              </div>
+            </div>
 
-                {/* Email Field */}
-                <div className="space-y-1">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-2 border ${
-                      errors.email ? "border-red-500" : "border-gray-300"
-                    } rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
-                  />
-                  <div className="min-h-[20px]">
-                    {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-                  </div>
-                </div>
+            <div className="space-y-1">
+              <textarea
+                name="message"
+                placeholder="Message"
+                value={formData.message}
+                onChange={handleChange}
+                className={`w-full px-4 py-2 border ${
+                  errors.message ? "border-red-500" : "border-gray-300"
+                } rounded resize-none h-32 focus:outline-none focus:ring-2 focus:ring-blue-400`}
+              />
+              <div className="min-h-[20px]">
+                {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
+              </div>
+            </div>
 
-                {/* Message Field */}
-                <div className="space-y-1">
-                  <textarea
-                    name="message"
-                    placeholder="Message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-2 border ${
-                      errors.message ? "border-red-500" : "border-gray-300"
-                    } rounded resize-none h-32 focus:outline-none focus:ring-2 focus:ring-blue-400`}
-                  />
-                  <div className="min-h-[20px]">
-                    {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
-                  </div>
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-300"
-                >
-                  Send Message
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-300"
+            >
+              Send Message
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

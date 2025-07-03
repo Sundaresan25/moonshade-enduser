@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const slides = [
-  
   {
     type: 'image',
     src: 'https://media.istockphoto.com/id/137993375/photo/perfume.jpg?s=612x612&w=0&k=20&c=vzZKbsfXLWL3tYGFP_Gh97jCs-5uSA3UtcsNzUgNmms=',
@@ -56,29 +55,24 @@ const Carousel = () => {
       <div className="relative h-[110vh] max-w-[2000px] mx-auto overflow-hidden">
         {renderMedia()}
 
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4 bg-black/40 z-10 pt-100 font-fahkwang">
-          <h1 className="text-3xl md:text-6xl font-bold mb-4">
-            Welcome to <span className="text-cyan-400">MOONSHADE</span>
+        {/* Overlay Text and Button */}
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4 bg-black/40 z-10 font-fahkwang">
+          <h1 className="text-3xl md:text-6xl font-bold font-fahkwang mb-4">
+            Welcome to <span className="text-cyan-400 font-fahkwang">MOONSHADE</span>
           </h1>
           <p className="text-lg md:text-2xl text-gray-200 font-light mb-8 max-w-2xl font-fahkwang">
             Where timeless elegance meets modern fragrance artistry. Discover your next signature scent with us.
           </p>
 
-          <div className="flex gap-6 flex-wrap justify-center">
-            <button
-              onClick={() => navigate('/register')}
-              className="border border-white px-6 py-3 text-base md:text-lg rounded hover:bg-cyan-600 hover:text-black transition font-fahkwang"
-            >
-              Register
-            </button>
-            <button
-              onClick={() => navigate('/contact')}
-              className="border border-white px-6 py-3 text-base md:text-lg rounded hover:bg-cyan-600 hover:text-black transition font-fahkwang"
-            >
-              Contact Us
-            </button>
-          </div>
+          <button
+            onClick={() => navigate('/register')}
+            className="border border-white px-10 py-3 text-base md:text-lg rounded hover:bg-cyan-600 hover:text-black transition font-fahkwang"
+          >
+            Register
+          </button>
         </div>
+
+        {/* Navigation Arrows */}
         <button
           onClick={() =>
             setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length)
@@ -93,6 +87,8 @@ const Carousel = () => {
         >
           &#8250;
         </button>
+
+        {/* Dot Indicators */}
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
           {slides.map((_, i) => (
             <div

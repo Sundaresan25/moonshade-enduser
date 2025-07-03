@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaUser, FaEnvelope, FaLock, FaUserPlus } from "react-icons/fa"; 
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +10,7 @@ const Register = () => {
     confirmPassword: "",
   });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,9 +18,10 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
+    const { name, email, password, confirmPassword } = formData;
+    if (!name || !email || !password || !confirmPassword) {
       setError("Please fill in all fields.");
-    } else if (formData.password !== formData.confirmPassword) {
+    } else if (password !== confirmPassword) {
       setError("Passwords do not match.");
     } else {
       setError("");
@@ -26,100 +30,101 @@ const Register = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-black">
-      {/* Registration Form */}
-      <div className="max-w-md w-full mx-8 p-6 border border-gray-300 rounded-lg text-center bg-white bg-opacity-90 shadow-md">
-        <h2 className="text-2xl font-bold mb-4">Register</h2>
-        <form onSubmit={handleSubmit} className="space-y-4 text-left">
-
-          {/* Name Field */}
-          <div>
-            <label
-              htmlFor="name"
-              className="block mb-1 font-medium text-gray-700"
-            >
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Name"
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          {/* Email Field */}
-          <div>
-            <label
-              htmlFor="email"
-              className="block mb-1 font-medium text-gray-700"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          {/* Password Field */}
-          <div>
-            <label
-              htmlFor="password"
-              className="block mb-1 font-medium text-gray-700"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          {/* Confirm Password Field */}
-          <div>
-            <label
-              htmlFor="confirmPassword"
-              className="block mb-1 font-medium text-gray-700"
-            >
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          {/* Error Message */}
-          {error && (
-            <p className="text-red-600 font-semibold text-sm">{error}</p>
-          )}
-
-          {/* Register Button */}
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+    <div
+      className="min-h-screen flex items-center justify-center bg-cover bg-center px-4 font-fahkwang"
+      style={{
+        backgroundImage:
+          "url('https://wallup.net/wp-content/uploads/2017/03/27/228688-minimalism-digital_art-black_background-748x421.jpg')",
+      }}
+    >
+      <div className="bg-white/90 shadow-2xl p-8 sm:p-10 w-full max-w-md space-y-6">
+      
+        <div className="flex items-center justify-center space-x-2">
+          <FaUserPlus className="text-2xl text-black" />
+          <h2
+            className="text-black text-4xl font-semibold text-center"
+            style={{ fontFamily: "'Cinzel', serif" }}
           >
             Register
+          </h2>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+
+          <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 shadow-inner">
+            <FaUser className="text-gray-500 mr-2" />
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={formData.name}
+              onChange={handleChange}
+              className="bg-transparent text-black w-full outline-none font-fahkwang"
+              required
+            />
+          </div>
+
+          <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 shadow-inner">
+            <FaEnvelope className="text-gray-500 mr-2" />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              className="bg-transparent text-black w-full outline-none font-fahkwang"
+              required
+            />
+          </div>
+
+          <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 shadow-inner">
+            <FaLock className="text-gray-500 mr-2" />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              className="bg-transparent text-black w-full outline-none font-fahkwang"
+              required
+            />
+          </div>
+
+          <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 shadow-inner">
+            <FaLock className="text-gray-500 mr-2" />
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className="bg-transparent text-black w-full outline-none font-fahkwang"
+              required
+            />
+          </div>
+
+          {error && (
+            <p className="text-red-500 text-sm text-center font-medium">
+              {error}
+            </p>
+          )}
+          <button
+            type="submit"
+            className="w-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white py-2 rounded-lg font-bold transition"
+          >
+            REGISTER
           </button>
+
+          <p className="text-sm text-center text-gray-700 mt-2">
+            Already have an account?{" "}
+            <button
+              type="button"
+              onClick={() => navigate("/login")}
+              className="text-blue-600 hover:underline"
+            >
+              Login
+            </button>
+          </p>
         </form>
       </div>
     </div>
