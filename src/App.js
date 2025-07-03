@@ -17,6 +17,7 @@ import SearchResults from "./Components/SearchResults";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 
+
 const App = () => (
    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
     <Navbar /> 

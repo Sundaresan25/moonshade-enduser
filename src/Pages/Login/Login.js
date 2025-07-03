@@ -22,9 +22,10 @@ const Login = () => {
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-black">
-      <div className="max-w-md w-full mx-8 py-6 px-6 border border-gray-300 rounded-lg text-center bg-white bg-opacity-90 shadow-md">
-        <h2 className="text-4xl font-bold mb-9">Login</h2>
+      <div className="max-w-md w-full mx-6 py-6 px-6 border border-gray-300 rounded-lg text-center bg-white bg-opacity-90 shadow-md">
+        <h2 className="text-4xl font-bold mb-5">Login</h2>
         <form onSubmit={handleSubmit} className="space-y-9 text-left">
+
           <input
             type="email"
             name="email"
@@ -33,6 +34,7 @@ const Login = () => {
             required
             className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+
           <input
             type="password"
             name="password"
@@ -41,23 +43,26 @@ const Login = () => {
             required
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+
           {error && (
             <p className="text-red-600 font-semibold text-sm">{error}</p>
           )}
+
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+            className="w-full bg-blue-600 text-white py-2 rounded hover:underline block my-3 sf-customer__reset-password-btn-blue-700 transition"
           >
-            Login
+            Sign In
           </button>
         </form>
+
         <p className="mt-4">
           <button
             type="button"
             onClick={() => navigate("/forgot-password")}
             className="text-blue-600 hover:underline bg-transparent border-none pt-6 m-0 cursor-pointer"
           >
-            Forgot Password?
+            Forgot your Password?
           </button>
         </p>
       </div>
