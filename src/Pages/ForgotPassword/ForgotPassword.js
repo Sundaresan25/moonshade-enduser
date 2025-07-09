@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUser, FaKey } from "react-icons/fa"; 
+import { FaUser, FaKey } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const ForgotPassword = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -10,7 +12,7 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email) {
-      setMessage("Please enter your email.");
+      setMessage(t("pleaseEnterEmail"));
     } else {
       setMessage("");
       navigate("/verify-otp", { state: { email } });
@@ -29,7 +31,7 @@ const ForgotPassword = () => {
         <div className="flex items-center justify-center space-x-2">
           <FaKey className="text-2xl text-black" />
           <h2 className="text-3xl font-semibold text-gray-800 text-center font-fahkwang">
-            Forgot Password
+            {t("forgotPassword")}
           </h2>
         </div>
 
@@ -39,7 +41,7 @@ const ForgotPassword = () => {
             <input
               type="email"
               name="email"
-              placeholder="Enter your email"
+              placeholder={t("enterYourEmail")}
               onChange={(e) => setEmail(e.target.value)}
               required
               className="bg-transparent text-black w-full outline-none font-fahkwang"
@@ -56,7 +58,7 @@ const ForgotPassword = () => {
             type="submit"
             className="w-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white py-2 rounded-lg font-bold transition"
           >
-            Submit
+            {t("submit")}
           </button>
         </form>
       </div>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { FaUserShield, FaShieldAlt } from "react-icons/fa"; 
+import { FaUserShield, FaShieldAlt } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const VerifyOtp = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const email = location.state?.email || "";
@@ -25,20 +27,20 @@ const VerifyOtp = () => {
 
   const handleVerify = (e) => {
     e.preventDefault();
-    if (!otp) return setMessage("Please enter the 6-digit OTP");
-    if (otp.length !== 6) return setMessage("OTP must be 6 digits");
+    if (!otp) return setMessage(t("pleaseEnterOtp"));
+    if (otp.length !== 6) return setMessage(t("otpMustBeSixDigits"));
 
     if (otp === "123456") {
       navigate("/set-new-password", { state: { email } });
     } else {
-      setMessage("Invalid OTP");
+      setMessage(t("invalidOtp"));
     }
   };
 
   const handleResendOtp = () => {
     setIsResendDisabled(true);
     setTimer(30);
-    setMessage("OTP resent to your email.");
+    setMessage(t("otpResent"));
   };
 
   return (
@@ -53,11 +55,11 @@ const VerifyOtp = () => {
         <div className="flex items-center justify-center space-x-2">
           <FaShieldAlt className="text-2xl text-black" />
           <h2 className="text-3xl font-semibold text-gray-800 text-center font-fahkwang">
-            Verify OTP
+            {t("verifyOtp")}
           </h2>
         </div>
 
-        <p className="text-center text-gray-600">For: {email}</p>
+        <p className="text-center text-gray-600">{t("forEmail")} {email}</p>
 
         <form onSubmit={handleVerify} className="space-y-5">
           <div className="flex flex-col">
@@ -67,7 +69,7 @@ const VerifyOtp = () => {
                 type="text"
                 name="otp"
                 maxLength="6"
-                placeholder="Enter 6-digit OTP"
+                placeholder={t("enterOtp")}
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
                 required
@@ -75,7 +77,7 @@ const VerifyOtp = () => {
               />
             </div>
             <p className="text-xs text-gray-500 mt-1 ml-1">
-              Please enter the 6-digit OTP sent to your email.
+              {t("otpInstruction")}
             </p>
           </div>
 
@@ -84,14 +86,13 @@ const VerifyOtp = () => {
               type="button"
               onClick={handleResendOtp}
               disabled={isResendDisabled}
-              className={`text-blue-600 hover:text-blue-800 transition ${
-                isResendDisabled ? "opacity-50 cursor-not-allowed" : ""
-              }`}
+              className={`text-blue-600 hover:text-blue-800 transition ${isResendDisabled ? "opacity-50 cursor-not-allowed" : ""
+                }`}
             >
-              Resend OTP
+              {t("resendOtp")}
             </button>
             {isResendDisabled && (
-              <span className="text-gray-500">{timer} sec</span>
+              <span className="text-gray-500">{timer} {t("seconds")}</span>
             )}
           </div>
 
@@ -104,7 +105,7 @@ const VerifyOtp = () => {
             type="submit"
             className="w-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white py-2 rounded-lg font-bold transition"
           >
-            Verify OTP
+            {t("verifyOtp")}
           </button>
         </form>
       </div>

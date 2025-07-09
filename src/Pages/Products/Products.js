@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Options from '../../Components/Options';
 import CommonPage from '../../Components/CommonPage';
 import Lottie from 'lottie-react';
+import { useTranslation } from 'react-i18next';
 
 const rawProducts = [
   {
@@ -33,6 +34,7 @@ const rawProducts = [
 const parsePrice = (price) => parseFloat(price.replace('$', ''));
 
 const Products = () => {
+  const { t } = useTranslation();
   const [filters, setFilters] = useState({ search: '', sort: '', filter: '' });
   const [animationData, setAnimationData] = useState(null);
 
@@ -61,17 +63,17 @@ const Products = () => {
     });
 
   const handleAddToCart = (product) => {
-    alert(`${product.name} added to cart.`);
+    alert(`${product.name} ${t('products.addedToCart')}`);
   };
 
   return (
     <div className="font-sans bg-gray-100 pb-12">
       {/* Banner */}
       <CommonPage
-        title="MOONSHADE"
-        subTitle="Step into a world of elegance and allure, indulge in timeless fragrances that awaken your senses, made to be remembered."
+        title={t('products.title')}
+        subTitle={t('products.subtitle')}
         backgroundImage="https://img.pikbest.com/ai/illus_our/20230427/655d364dbe855341d5ed98aec55f14e3.jpg!w700wp"
-        highlightWord="SHADE"
+        highlightWord={t('products.highlightWord')}
       />
 
       {/* Filters */}
@@ -80,11 +82,12 @@ const Products = () => {
       {/* New Collections */}
       <section id="new" className="bg-white py-20 px-4">
         <div className="max-w-5xl mx-auto text-center" data-aos="fade-up">
+
           {/* Heading with lines */}
           <div className="flex items-center justify-center mb-12">
             <div className="flex-grow border-t border-gray-300"></div>
             <h2 className="text-5xl font-bold text-black mb-4 tracking-wide font-[Playfair Display] italic">
-              New Collections
+              {t('products.newCollections')}
             </h2>
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
@@ -94,12 +97,12 @@ const Products = () => {
             {animationData ? (
               <Lottie animationData={animationData} loop className="w-60 h-60" />
             ) : (
-              <p className="text-gray-500">Loading animation...</p>
+              <p className="text-gray-500">{t('products.loadingAnimation')}</p>
             )}
           </div>
 
           {/* Subtext */}
-          <p className="text-xl text-black-200 font-medium mt-4">Launching Soon...</p>
+          <p className="text-xl text-black-200 font-medium mt-4">{t('products.launchingSoon')}</p>
         </div>
       </section>
     </div>

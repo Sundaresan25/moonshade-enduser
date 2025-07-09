@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUser, FaLock, FaSignInAlt } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -14,10 +16,10 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      setError("Please fill in all fields.");
+      setError(t("pleaseFill"));
     } else {
       setError("");
-      alert("Login successful!");
+      alert(t("loginSuccess"));
     }
   };
 
@@ -30,14 +32,14 @@ const Login = () => {
       }}
     >
       <div className="bg-white/90 shadow-2xl p-8 sm:p-10 w-full max-w-md space-y-6">
-        
+
         <div className="flex items-center justify-center space-x-2">
           <FaSignInAlt className="text-3xl text-black-600" />
           <h2
             className="text-black text-4xl font-semibold"
             style={{ fontFamily: "'Cinzel', serif" }}
           >
-            Login
+            {t("login")}
           </h2>
         </div>
 
@@ -47,7 +49,7 @@ const Login = () => {
             <input
               type="text"
               name="email"
-              placeholder="Username"
+              placeholder={t("username")}
               onChange={handleChange}
               className="bg-transparent text-black w-full outline-none font-fahkwang"
               required
@@ -59,7 +61,7 @@ const Login = () => {
             <input
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder={t("password")}
               onChange={handleChange}
               className="bg-transparent text-black w-full outline-none font-fahkwang"
               required
@@ -69,14 +71,14 @@ const Login = () => {
           <div className="flex items-center justify-between text-sm text-gray-600">
             <label className="flex items-center space-x-1">
               <input type="checkbox" className="accent-blue-600" />
-              <span>Remember me</span>
+              <span>{t("rememberMe")}</span>
             </label>
             <button
               type="button"
               onClick={() => navigate("/forgot-password")}
               className="text-blue-600 hover:underline"
             >
-              Forgot Password?
+              {t("forgotPassword")}
             </button>
           </div>
 
@@ -88,16 +90,17 @@ const Login = () => {
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
           >
-            Login
+            {t("login")}
           </button>
         </form>
+
         <p className="mt-4">
           <button
             type="button"
             onClick={() => navigate("/forgot-password")}
             className="text-blue-600 hover:underline bg-transparent border-none pt-6 m-0 cursor-pointer"
           >
-            Forgot Password?
+            {t("forgotPassword")}
           </button>
         </p>
       </div>

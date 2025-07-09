@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUser, FaEnvelope, FaLock, FaUserPlus } from "react-icons/fa"; 
+import { FaUser, FaEnvelope, FaLock, FaUserPlus } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,12 +22,12 @@ const Register = () => {
     e.preventDefault();
     const { name, email, password, confirmPassword } = formData;
     if (!name || !email || !password || !confirmPassword) {
-      setError("Please fill in all fields.");
+      setError(t("pleaseFill"));
     } else if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+      setError(t("passwordMismatch"));
     } else {
       setError("");
-      alert("Registration successful!");
+      alert(t("registerSuccess"));
     }
   };
 
@@ -38,14 +40,14 @@ const Register = () => {
       }}
     >
       <div className="bg-white/90 shadow-2xl p-8 sm:p-10 w-full max-w-md space-y-6">
-      
+
         <div className="flex items-center justify-center space-x-2">
           <FaUserPlus className="text-2xl text-black" />
           <h2
             className="text-black text-4xl font-semibold text-center"
             style={{ fontFamily: "'Cinzel', serif" }}
           >
-            Register
+            {t("register")}
           </h2>
         </div>
 
@@ -56,7 +58,7 @@ const Register = () => {
             <input
               type="text"
               name="name"
-              placeholder="Full Name"
+              placeholder={t("fullName")}
               value={formData.name}
               onChange={handleChange}
               className="bg-transparent text-black w-full outline-none font-fahkwang"
@@ -69,7 +71,7 @@ const Register = () => {
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={t("email")}
               value={formData.email}
               onChange={handleChange}
               className="bg-transparent text-black w-full outline-none font-fahkwang"
@@ -82,7 +84,7 @@ const Register = () => {
             <input
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder={t("password")}
               value={formData.password}
               onChange={handleChange}
               className="bg-transparent text-black w-full outline-none font-fahkwang"
@@ -95,7 +97,7 @@ const Register = () => {
             <input
               type="password"
               name="confirmPassword"
-              placeholder="Confirm Password"
+              placeholder={t("confirmPassword")}
               value={formData.confirmPassword}
               onChange={handleChange}
               className="bg-transparent text-black w-full outline-none font-fahkwang"
@@ -112,17 +114,17 @@ const Register = () => {
             type="submit"
             className="w-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white py-2 rounded-lg font-bold transition"
           >
-            REGISTER
+            {t("register")}
           </button>
 
           <p className="text-sm text-center text-gray-700 mt-2">
-            Already have an account?{" "}
+            {t("alreadyAccount")}{" "}
             <button
               type="button"
               onClick={() => navigate("/login")}
               className="text-blue-600 hover:underline"
             >
-              Login
+              {t("login")}
             </button>
           </p>
         </form>

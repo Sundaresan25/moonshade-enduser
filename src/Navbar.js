@@ -1,23 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaShoppingCart, FaSearch, FaBars, FaTimes } from "react-icons/fa";
-import products from "./data/products"; // ← import shared product data
+import products from "./data/products";
+import { useTranslation } from "react-i18next";
 
 const pages = [
-  { name: "Home", path: "/" },
-  { name: "Products", path: "/products" },
-  { name: "Register", path: "/register" },
-  { name: "Login", path: "/login" },
-  { name: "Contact", path: "/contact" },
-  { name: "Disclaimer", path: "/disclaimer" },
-  { name: "Privacy Policy", path: "/privacy-policy" },
-  { name: "Cookies", path: "/cookies" },
-  { name: "Imprint / Legal Information", path: "/imprint-legal-information" },
+  { name: "home", path: "/" },
+  { name: "products", path: "/products" },
+  { name: "register", path: "/register" },
+  { name: "login", path: "/login" },
+  { name: "contact", path: "/contact" },
+  { name: "disclaimer", path: "/disclaimer" },
+  { name: "privacyPolicy", path: "/privacy-policy" },
+  { name: "cookies", path: "/cookies" },
+  { name: "imprintLegalInformation", path: "/imprint-legal-information" },
 ];
 
 const searchIndex = [...pages, ...products];
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -36,7 +38,7 @@ const Navbar = () => {
 
   const suggestions = query.trim()
     ? searchIndex.filter((item) =>
-        item.name.toLowerCase().includes(query.toLowerCase())
+        t(item.name).toLowerCase().includes(query.toLowerCase())
       )
     : [];
 
@@ -55,12 +57,12 @@ const Navbar = () => {
         </Link>
 
         <ul className="hidden md:flex gap-8 text-base font-medium">
-          {["Home", "Products", "Register", "Login", "Contact"].map((label) => {
-            const { path } = pages.find((p) => p.name === label);
+          {["home", "products", "register", "login", "contact"].map((key) => {
+            const { path } = pages.find((p) => p.name === key);
             return (
-              <li key={label}>
+              <li key={key}>
                 <Link to={path} className="text-white hover:text-cyan-400 transition">
-                  {label}
+                  {t(`navbar.${key}`)}
                 </Link>
               </li>
             );
@@ -84,12 +86,12 @@ const Navbar = () => {
       {menuOpen && (
         <div className="md:hidden bg-black text-white px-4 pb-6">
           <ul className="flex flex-col gap-4 text-lg font-medium">
-            {["Home", "Products", "Register", "Login", "Contact"].map((label) => {
-              const { path } = pages.find((p) => p.name === label);
+            {["home", "products", "register", "login", "contact"].map((key) => {
+              const { path } = pages.find((p) => p.name === key);
               return (
-                <li key={label}>
+                <li key={key}>
                   <Link to={path} className="hover:text-cyan-400" onClick={() => setMenuOpen(false)}>
-                    {label}
+                    {t(`navbar.${key}`)}
                   </Link>
                 </li>
               );
@@ -124,7 +126,7 @@ const Navbar = () => {
                   goFullSearch(query.trim());
                 }
               }}
-              placeholder="Search pages or products..."
+              placeholder={t("navbar.searchPlaceholder")}
               className="w-full p-4 text-lg md:text-xl rounded-md text-gray-900"
             />
             {query && (
@@ -141,18 +143,18 @@ const Navbar = () => {
                         }}
                         className="px-4 py-3 hover:bg-gray-100 cursor-pointer"
                       >
-                        {s.name}
+                        {t(s.name)}
                       </li>
                     ))}
                     <li
                       onClick={() => goFullSearch(query.trim())}
                       className="px-4 py-3 text-cyan-700 hover:bg-gray-100 cursor-pointer font-medium"
                     >
-                      See all results →
+                      {t("navbar.seeAllResults")}
                     </li>
                   </>
                 ) : (
-                  <li className="px-4 py-3 text-gray-500">No matches found.</li>
+                  <li className="px-4 py-3 text-gray-500">{t("navbar.noMatchesFound")}</li>
                 )}
               </ul>
             )}

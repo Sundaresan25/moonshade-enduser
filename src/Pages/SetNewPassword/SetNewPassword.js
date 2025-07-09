@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { FaLock, FaCheckDouble, FaKey } from "react-icons/fa"; 
+import { FaLock, FaCheckDouble, FaKey } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const SetNewPassword = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { state } = useLocation();
   const email = state?.email || "";
@@ -21,12 +23,12 @@ const SetNewPassword = () => {
     e.preventDefault();
     const { newPassword, confirmPassword } = formData;
     if (!newPassword || !confirmPassword) {
-      return setMessage("Please fill in all fields.");
+      return setMessage(t('pleaseFill'));
     }
     if (newPassword !== confirmPassword) {
-      return setMessage("Passwords do not match.");
+      return setMessage(t('passwordMismatch'));
     }
-    setMessage("Password reset successful!");
+    setMessage(t('passwordResetSuccess'));
     setTimeout(() => navigate("/"), 2000);
   };
 
@@ -42,11 +44,11 @@ const SetNewPassword = () => {
         <div className="flex items-center justify-center space-x-2">
           <FaKey className="text-2xl text-black" />
           <h2 className="text-3xl font-semibold text-center text-gray-800 font-fahkwang">
-            Set New Password
+            {t('setNewPassword')}
           </h2>
         </div>
 
-        <p className="text-center text-gray-600">For: {email}</p>
+        <p className="text-center text-gray-600">{t('forEmail')} {email}</p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 shadow-inner">
@@ -54,7 +56,7 @@ const SetNewPassword = () => {
             <input
               type="password"
               name="newPassword"
-              placeholder="Enter new password"
+              placeholder={t('enterNewPassword')}
               onChange={handleChange}
               required
               className="bg-transparent text-black w-full outline-none font-fahkwang"
@@ -65,7 +67,7 @@ const SetNewPassword = () => {
             <input
               type="password"
               name="confirmPassword"
-              placeholder="Confirm password"
+              placeholder={t('confirmPassword')}
               onChange={handleChange}
               required
               className="bg-transparent text-black w-full outline-none font-fahkwang"
@@ -80,7 +82,7 @@ const SetNewPassword = () => {
             type="submit"
             className="w-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white py-2 rounded-lg font-bold transition"
           >
-            Reset Password
+            {t('resetPassword')}
           </button>
         </form>
       </div>

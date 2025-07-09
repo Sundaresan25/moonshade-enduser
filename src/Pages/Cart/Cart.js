@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
   const [animationData, setAnimationData] = useState(null);
   const [notified, setNotified] = useState(false);
+  const { t } = useTranslation(); // Import translation hook
 
   useEffect(() => {
     fetch("https://assets6.lottiefiles.com/packages/lf20_jcikwtux.json")
@@ -24,25 +26,25 @@ const Cart = () => {
         {/* Left: Content */}
         <div className="md:w-1/2 text-center md:text-left">
           <h1 className="text-4xl md:text-5xl font-black text-gray-800 mb-4">
-            Your Cart is Empty 🛍️
+            {t("cart.empty")}
           </h1>
           <p className="text-lg text-gray-600 mb-3">
-            Stay tuned — we're launching soon!
+            {t("cart.staytuned")}
           </p>
           <p className="text-sm text-gray-500 mb-6">
-            MOONSHADE perfumes are in the labs. Be the first person to know when our premium scents go on live.
+            {t("cart.notifytext")}
           </p>
 
           <button
             onClick={handleNotifyClick}
             className="bg-black/80 hover:bg-black text-white px-6 py-3 rounded-full backdrop-blur-sm transition-all shadow-md"
           >
-            Notify Me When Live
+            {t("cart.notifybutton")}
           </button>
 
           {notified && (
             <div className="mt-5 text-green-600 font-medium animate-pulse">
-              ✅ You’ll be notified when we launch!
+              {t("cart.notifysuccess")}
             </div>
           )}
         </div>
@@ -53,7 +55,7 @@ const Cart = () => {
             {animationData ? (
               <Lottie animationData={animationData} className="w-72 h-72 md:w-80 md:h-80" />
             ) : (
-              <p className="text-gray-400">Loading animation...</p>
+              <p className="text-gray-400">{t("loading")}</p>
             )}
           </div>
         </div>

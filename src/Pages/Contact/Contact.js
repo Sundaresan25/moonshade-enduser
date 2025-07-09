@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import CommonPage from "../../Components/CommonPage";
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -25,27 +28,27 @@ const Contact = () => {
     const newErrors = {};
 
     if (!formData.firstName.trim()) {
-      newErrors.firstName = "First name is required.";
+      newErrors.firstName = t("contact.firstNameRequired");
     } else if (!/^[a-zA-Z\s]+$/.test(formData.firstName)) {
-      newErrors.firstName = "First name must contain only letters and spaces.";
+      newErrors.firstName = t("contact.firstNameInvalid");
     }
 
     if (!formData.lastName.trim()) {
-      newErrors.lastName = "Last name is required.";
+      newErrors.lastName = t("contact.lastNameRequired");
     } else if (!/^[a-zA-Z\s]+$/.test(formData.lastName)) {
-      newErrors.lastName = "Last name must contain only letters and spaces.";
+      newErrors.lastName = t("contact.lastNameInvalid");
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required.";
+      newErrors.email = t("contact.emailRequired");
     } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(formData.email)) {
-      newErrors.email = "Invalid email format.";
+      newErrors.email = t("contact.emailInvalid");
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = "Message is required.";
+      newErrors.message = t("contact.messageRequired");
     } else if (formData.message.length > 500) {
-      newErrors.message = "Message must be under 500 characters.";
+      newErrors.message = t("contact.messageLength");
     }
 
     return newErrors;
@@ -69,13 +72,7 @@ const Contact = () => {
         });
 
         if (response.status === 200) {
-          const result = {
-            status: 200,
-            text: "OK",
-            __proto__: Object.prototype,
-          };
-          console.log("Email sent successfully!", result);
-
+          console.log("Email sent successfully!", response);
           setSubmitted(true);
           setFormData({ firstName: "", lastName: "", email: "", message: "" });
           setErrors({});
@@ -96,15 +93,15 @@ const Contact = () => {
   return (
     <div className="font-fahkwang bg-white pb-12">
       <CommonPage
-        title="Contact Us"
-        subTitle="Every scent begins with a story, the essence of luxury is just a message away, let yours begin with us."
+        title={t("contact.title")}
+        subTitle={t("contact.subTitle")}
         backgroundImage="https://wallpapers.com/images/hd/plain-black-background-image-p7zyn3zjoo0toue5.jpg"
-        highlightWord="Us"
+        highlightWord={t("contact.highlightWord")}
       />
 
       <div className="max-w-3xl mx-auto my-10 px-4 py-10 bg-white rounded-lg shadow-lg">
         <div className="text-center mb-6 space-y-3">
-          <h2 className="text-3xl font-bold text-gray-800">Send Us a Message</h2>
+          <h2 className="text-3xl font-bold text-gray-800">{t("contact.sendUsMessage")}</h2>
           <div className="flex justify-center items-center gap-6 text-gray-700">
             <a href="mailto:support@moonshade.com" className="text-blue-600 hover:underline">
               📧 support@moonshade.com
@@ -125,7 +122,7 @@ const Contact = () => {
 
         {submitted ? (
           <p className="text-green-600 font-medium text-center">
-            Thank you for reaching out! We'll respond shortly.
+            {t("contact.successMessage")}
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -134,12 +131,10 @@ const Contact = () => {
                 <input
                   type="text"
                   name="firstName"
-                  placeholder="First Name"
+                  placeholder={t("contact.firstNamePlaceholder")}
                   value={formData.firstName}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border ${
-                    errors.firstName ? "border-red-500" : "border-gray-300"
-                  } rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                  className={`w-full px-4 py-2 border ${errors.firstName ? "border-red-500" : "border-gray-300"} rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
                 />
                 <div className="min-h-[20px]">
                   {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
@@ -150,12 +145,10 @@ const Contact = () => {
                 <input
                   type="text"
                   name="lastName"
-                  placeholder="Last Name"
+                  placeholder={t("contact.lastNamePlaceholder")}
                   value={formData.lastName}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border ${
-                    errors.lastName ? "border-red-500" : "border-gray-300"
-                  } rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                  className={`w-full px-4 py-2 border ${errors.lastName ? "border-red-500" : "border-gray-300"} rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
                 />
                 <div className="min-h-[20px]">
                   {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
@@ -167,12 +160,10 @@ const Contact = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder={t("contact.emailPlaceholder")}
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full px-4 py-2 border ${
-                  errors.email ? "border-red-500" : "border-gray-300"
-                } rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                className={`w-full px-4 py-2 border ${errors.email ? "border-red-500" : "border-gray-300"} rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
               />
               <div className="min-h-[20px]">
                 {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
@@ -182,12 +173,10 @@ const Contact = () => {
             <div className="space-y-1">
               <textarea
                 name="message"
-                placeholder="Message"
+                placeholder={t("contact.messagePlaceholder")}
                 value={formData.message}
                 onChange={handleChange}
-                className={`w-full px-4 py-2 border ${
-                  errors.message ? "border-red-500" : "border-gray-300"
-                } rounded resize-none h-32 focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                className={`w-full px-4 py-2 border ${errors.message ? "border-red-500" : "border-gray-300"} rounded resize-none h-32 focus:outline-none focus:ring-2 focus:ring-blue-400`}
               />
               <div className="min-h-[20px]">
                 {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
@@ -198,7 +187,7 @@ const Contact = () => {
               type="submit"
               className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-300"
             >
-              Send Message
+              {t("contact.sendButton")}
             </button>
           </form>
         )}
